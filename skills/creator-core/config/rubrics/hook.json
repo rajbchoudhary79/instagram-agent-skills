@@ -1,0 +1,229 @@
+{
+  "id": "hook",
+  "name": "Hook strength",
+  "version": 1,
+  "applies_to": [
+    "reel hook",
+    "carousel cover",
+    "caption first line"
+  ],
+  "measures": "How likely the first line is to earn the next three seconds: short, front-loaded, concrete, with tension or a gap, aimed at a recognisable viewer.",
+  "limitations": [
+    "Reads text only. Delivery, the first frame and the on-screen visual decide as much as the words.",
+    "Rewards patterns that tend to work; it cannot predict reach, which depends on the audience and distribution.",
+    "Tension and specificity are detected from word lists and numbers, so a clever hook in plain words can score lower than it deserves."
+  ],
+  "bands": {
+    "strong": 80,
+    "ok": 55
+  },
+  "criteria": [
+    {
+      "id": "brevity",
+      "label": "Brevity",
+      "weight": 15,
+      "measures": "Fits in roughly 2-3 seconds of speech.",
+      "rules": [
+        {
+          "feature": "word_count",
+          "type": "range",
+          "ideal": [
+            5,
+            14
+          ],
+          "zero_at": [
+            1,
+            28
+          ],
+          "why": "5-14 words says it inside about three seconds.",
+          "fix": "Cut to the noun, the verb and the stake."
+        }
+      ]
+    },
+    {
+      "id": "front_load",
+      "label": "Front-loaded",
+      "weight": 10,
+      "measures": "The point arrives in the first words, not after a warm-up.",
+      "rules": [
+        {
+          "feature": "starts_with_greeting",
+          "type": "bool",
+          "true": 0,
+          "false": 100,
+          "why": "Greetings spend the only seconds you have.",
+          "fix": "Delete the greeting; start on the claim."
+        },
+        {
+          "feature": "starts_with_filler",
+          "type": "bool",
+          "true": 30,
+          "false": 100,
+          "why": "'So', 'today', 'in this video' delay the point.",
+          "fix": "Start on the most specific word."
+        }
+      ]
+    },
+    {
+      "id": "specificity",
+      "label": "Specificity",
+      "weight": 25,
+      "measures": "Concrete nouns, numbers, names, units.",
+      "rules": [
+        {
+          "feature": "specificity_hits",
+          "type": "min",
+          "zero_at": 0,
+          "good": 2,
+          "why": "Concrete details make a claim believable and visual.",
+          "fix": "Add the number, the object or the exact situation."
+        },
+        {
+          "feature": "has_number",
+          "type": "bool",
+          "true": 100,
+          "false": 55,
+          "why": "Numbers stop thumbs. Only use true ones."
+        }
+      ]
+    },
+    {
+      "id": "tension",
+      "label": "Tension or gap",
+      "weight": 25,
+      "measures": "A conflict, a cost, or an open question the viewer wants closed.",
+      "rules": [
+        {
+          "feature": "stakes",
+          "type": "min",
+          "zero_at": 0,
+          "good": 1,
+          "why": "Conflict (wrong, cost, stop, nobody) or a gap (why, the real reason, what happens) gives a reason to keep watching.",
+          "fix": "Name what is at stake, what is wrong, or open a question the next line answers."
+        }
+      ]
+    },
+    {
+      "id": "relevance",
+      "label": "Aimed at someone",
+      "weight": 15,
+      "measures": "The right viewer recognises themselves.",
+      "rules": [
+        {
+          "feature": "second_person",
+          "type": "bool",
+          "true": 100,
+          "false": 60,
+          "why": "'You' puts the viewer in the line."
+        },
+        {
+          "feature": "audience_hit",
+          "type": "bool",
+          "true": 100,
+          "false": 50,
+          "why": "Uses the audience's own words from the creator profile.",
+          "fix": "Name the audience or their situation in their words.",
+          "unmeasured": "no creator profile loaded"
+        }
+      ]
+    },
+    {
+      "id": "formula",
+      "label": "Known formula",
+      "weight": 5,
+      "measures": "Matches a formula from the hook library.",
+      "rules": [
+        {
+          "feature": "formula_match",
+          "type": "bool",
+          "true": 100,
+          "false": 60,
+          "why": "A recognised shape is easier to judge and to iterate on. Off-formula is allowed.",
+          "unmeasured": "formula library not supplied"
+        }
+      ]
+    },
+    {
+      "id": "clean",
+      "label": "Clean language",
+      "weight": 5,
+      "measures": "No AI-sounding filler or template phrasing.",
+      "rules": [
+        {
+          "feature": "slop_count",
+          "type": "max",
+          "good": 0,
+          "zero_at": 2,
+          "why": "Slop words read as generated and make the line vaguer.",
+          "fix": "Replace the flagged word with the concrete thing."
+        },
+        {
+          "feature": "tell_count",
+          "type": "max",
+          "good": 0,
+          "zero_at": 1,
+          "why": "Template constructions ('here's the thing', 'not just X but Y') announce instead of saying.",
+          "fix": "Cut the announcement; say the thing."
+        }
+      ]
+    }
+  ],
+  "dealbreakers": [
+    {
+      "id": "greeting",
+      "feature": "starts_with_greeting",
+      "op": "==",
+      "value": true,
+      "cap": 25,
+      "message": "Opens with a greeting. Nobody opens Instagram to be greeted."
+    },
+    {
+      "id": "begging",
+      "feature": "attention_begging",
+      "op": ">=",
+      "value": 1,
+      "cap": 45,
+      "message": "Begs for attention ('stop scrolling', 'wait for it'). Earn it instead."
+    },
+    {
+      "id": "bait",
+      "feature": "engagement_bait",
+      "op": ">=",
+      "value": 1,
+      "cap": 50,
+      "message": "Engagement bait in the hook."
+    },
+    {
+      "id": "too_long",
+      "feature": "word_count",
+      "op": ">",
+      "value": 30,
+      "cap": 50,
+      "message": "Over 30 words. That is a paragraph, not a hook."
+    },
+    {
+      "id": "long",
+      "feature": "word_count",
+      "op": ">",
+      "value": 20,
+      "cap": 60,
+      "message": "Over 20 words: too long to land in about three seconds."
+    },
+    {
+      "id": "slop",
+      "feature": "slop_count",
+      "op": ">=",
+      "value": 2,
+      "cap": 55,
+      "message": "Two or more slop terms in one line."
+    },
+    {
+      "id": "banned",
+      "feature": "banned_hits",
+      "op": ">=",
+      "value": 1,
+      "cap": 40,
+      "message": "Uses a word the creator never uses (profile)."
+    }
+  ]
+}

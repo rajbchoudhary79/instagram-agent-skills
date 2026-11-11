@@ -1,0 +1,117 @@
+{
+  "id": "storytelling",
+  "name": "Storytelling",
+  "version": 1,
+  "applies_to": [
+    "reel script",
+    "carousel",
+    "story sequence",
+    "long caption"
+  ],
+  "measures": "Whether a piece moves: a setup, a turn and a payoff, concrete detail, rising tension, varied rhythm and a landing.",
+  "limitations": [
+    "Arc detection uses marker phrases. A story told without them ('Then.' 'Now.') scores lower than it should.",
+    "It measures structure, not whether the story is interesting or true.",
+    "Short pieces (under ~40 words) rarely score well; use the hook rubric for those."
+  ],
+  "bands": {
+    "strong": 80,
+    "ok": 55
+  },
+  "criteria": [
+    {
+      "id": "arc",
+      "label": "Arc",
+      "weight": 35,
+      "measures": "Setup, turn and payoff are all present.",
+      "rules": [
+        {
+          "feature": "story_arc",
+          "type": "min",
+          "zero_at": 0,
+          "good": 3,
+          "why": "Count of setup / turn / payoff signals present (0-3).",
+          "fix": "Add the missing beat: when it happened, what went wrong, what changed."
+        }
+      ]
+    },
+    {
+      "id": "detail",
+      "label": "Concrete detail",
+      "weight": 25,
+      "measures": "Numbers, names, objects, times.",
+      "rules": [
+        {
+          "feature": "specificity_density",
+          "type": "min",
+          "zero_at": 0,
+          "good": 4,
+          "why": "Concrete details per 100 words.",
+          "fix": "Swap an abstraction for the real detail."
+        },
+        {
+          "feature": "first_person",
+          "type": "bool",
+          "true": 100,
+          "false": 70,
+          "why": "A person in the story ('I', 'we') makes it a story rather than advice."
+        }
+      ]
+    },
+    {
+      "id": "tension",
+      "label": "Tension",
+      "weight": 20,
+      "measures": "Something is at stake.",
+      "rules": [
+        {
+          "feature": "tension",
+          "type": "min",
+          "zero_at": 0,
+          "good": 3,
+          "why": "Conflict and cost words.",
+          "fix": "Say what could be lost."
+        }
+      ]
+    },
+    {
+      "id": "rhythm",
+      "label": "Rhythm",
+      "weight": 10,
+      "measures": "Sentence lengths vary.",
+      "rules": [
+        {
+          "feature": "burstiness",
+          "type": "range",
+          "ideal": [
+            0.35,
+            1.3
+          ],
+          "zero_at": [
+            0.05,
+            2.2
+          ],
+          "why": "Variation in sentence length (coefficient of variation).",
+          "fix": "Mix a few very short sentences with longer ones.",
+          "unmeasured": "fewer than 3 sentences"
+        }
+      ]
+    },
+    {
+      "id": "landing",
+      "label": "Landing",
+      "weight": 10,
+      "measures": "Ends on an ask or a point, not a fade.",
+      "rules": [
+        {
+          "feature": "closing_ask",
+          "type": "bool",
+          "true": 100,
+          "false": 60,
+          "why": "The last lines tell the viewer what to do or think."
+        }
+      ]
+    }
+  ],
+  "dealbreakers": []
+}

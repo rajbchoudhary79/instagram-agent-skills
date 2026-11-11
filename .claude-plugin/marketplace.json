@@ -1,0 +1,18 @@
+{
+  "name": "creator-content-kit",
+  "owner": {"name": "Rajendra Prasad"},
+  "metadata": {
+    "description": "Instagram creator skills: drafting, scoring and planning with human approval before anything is posted.",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "creator-content-kit",
+      "source": "./",
+      "description": "13 Instagram creator skills plus a shared core (profile, scoring engine, quality gate).",
+      "version": "1.0.0",
+      "category": "productivity",
+      "keywords": ["instagram", "content", "creator"]
+    }
+  ]
+}

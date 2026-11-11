@@ -1,0 +1,166 @@
+{
+  "id": "comment",
+  "name": "Comment quality",
+  "version": 1,
+  "applies_to": [
+    "comments on other creators' posts"
+  ],
+  "measures": "Whether a comment reads like a person who watched the post: specific to it, adds something, no self-promotion, not generic.",
+  "limitations": [
+    "Specificity to the post is measured by shared content words with the post text you supply (--post). Without it, that criterion is skipped.",
+    "Cannot tell whether the opinion in the comment is a good one."
+  ],
+  "bands": {
+    "strong": 80,
+    "ok": 55
+  },
+  "criteria": [
+    {
+      "id": "not_generic",
+      "label": "Not generic",
+      "weight": 35,
+      "measures": "Could not be pasted under any other post.",
+      "rules": [
+        {
+          "feature": "generic_comment",
+          "type": "bool",
+          "true": 0,
+          "false": 100,
+          "why": "'Great post' and emoji-only comments are indistinguishable from bots.",
+          "fix": "Reference one specific thing from the post."
+        }
+      ]
+    },
+    {
+      "id": "specific",
+      "label": "About this post",
+      "weight": 30,
+      "measures": "Refers to something actually in the post.",
+      "rules": [
+        {
+          "feature": "context_overlap",
+          "type": "min",
+          "zero_at": 0,
+          "good": 2,
+          "why": "Content words shared with the post.",
+          "fix": "Name the detail you are reacting to.",
+          "unmeasured": "no post text given (--post)"
+        }
+      ]
+    },
+    {
+      "id": "length",
+      "label": "Length",
+      "weight": 15,
+      "measures": "Long enough to say something, short enough to read.",
+      "rules": [
+        {
+          "feature": "word_count",
+          "type": "range",
+          "ideal": [
+            6,
+            40
+          ],
+          "zero_at": [
+            1,
+            80
+          ],
+          "why": "6-40 words."
+        }
+      ]
+    },
+    {
+      "id": "adds",
+      "label": "Adds something",
+      "weight": 10,
+      "measures": "A question, a counterpoint, an example.",
+      "rules": [
+        {
+          "feature": "question_count",
+          "type": "min",
+          "zero_at": -1,
+          "good": 1,
+          "why": "A real question keeps the thread going."
+        },
+        {
+          "feature": "specificity_hits",
+          "type": "min",
+          "zero_at": 0,
+          "good": 1,
+          "why": "A concrete detail of your own."
+        }
+      ]
+    },
+    {
+      "id": "clean",
+      "label": "Clean",
+      "weight": 10,
+      "measures": "No promo, links or slop.",
+      "rules": [
+        {
+          "feature": "self_promo",
+          "type": "max",
+          "good": 0,
+          "zero_at": 1,
+          "why": "Self-promotion in someone else's comments."
+        },
+        {
+          "feature": "link_count",
+          "type": "max",
+          "good": 0,
+          "zero_at": 1,
+          "why": "Links in comments read as spam."
+        },
+        {
+          "feature": "slop_count",
+          "type": "max",
+          "good": 0,
+          "zero_at": 2,
+          "why": "Slop."
+        }
+      ]
+    }
+  ],
+  "dealbreakers": [
+    {
+      "id": "generic",
+      "feature": "generic_comment",
+      "op": "==",
+      "value": true,
+      "cap": 20,
+      "message": "Generic praise or emoji only."
+    },
+    {
+      "id": "promo",
+      "feature": "self_promo",
+      "op": ">=",
+      "value": 1,
+      "cap": 30,
+      "message": "Self-promotion."
+    },
+    {
+      "id": "link",
+      "feature": "link_count",
+      "op": ">=",
+      "value": 1,
+      "cap": 30,
+      "message": "Contains a link."
+    },
+    {
+      "id": "spam",
+      "feature": "spam_count",
+      "op": ">=",
+      "value": 1,
+      "cap": 10,
+      "message": "Spam marker."
+    },
+    {
+      "id": "bait",
+      "feature": "engagement_bait",
+      "op": ">=",
+      "value": 1,
+      "cap": 40,
+      "message": "Engagement bait."
+    }
+  ]
+}

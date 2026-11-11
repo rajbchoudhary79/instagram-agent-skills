@@ -1,0 +1,157 @@
+{
+  "_about": "Shape of the shared creator profile (profile.json). Validated by igkit.schema, a subset of JSON Schema.",
+  "type": "object",
+  "required": ["schema_version", "identity", "niche", "audience", "language", "voice"],
+  "properties": {
+    "schema_version": {"type": "integer", "minimum": 1, "maximum": 1},
+    "updated": {"type": "string"},
+    "identity": {
+      "type": "object",
+      "required": ["name"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "handle": {"type": "string", "maxLength": 31},
+        "one_liner": {"type": "string"},
+        "offer": {"type": "string"},
+        "location": {"type": "string"},
+        "pronouns": {"type": "string"}
+      }
+    },
+    "niche": {
+      "type": "object",
+      "required": ["primary"],
+      "properties": {
+        "primary": {"type": "string", "minLength": 1},
+        "sub_niches": {"type": "array", "items": {"type": "string"}},
+        "pillars": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name"],
+            "properties": {
+              "name": {"type": "string", "minLength": 1},
+              "share": {"type": "number", "minimum": 0, "maximum": 1},
+              "description": {"type": "string"}
+            }
+          }
+        }
+      }
+    },
+    "audience": {
+      "type": "object",
+      "required": ["who"],
+      "properties": {
+        "who": {"type": "string", "minLength": 1},
+        "identity_terms": {"type": "array", "items": {"type": "string"}},
+        "pains": {"type": "array", "items": {"type": "string"}},
+        "desires": {"type": "array", "items": {"type": "string"}},
+        "objections": {"type": "array", "items": {"type": "string"}},
+        "awareness": {"type": "string", "enum": ["", "unaware", "problem-aware", "solution-aware", "product-aware", "most-aware"]},
+        "search_terms": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "positioning": {
+      "type": "object",
+      "properties": {
+        "statement": {"type": "string"},
+        "differentiators": {"type": "array", "items": {"type": "string"}},
+        "peers": {"type": "array", "items": {"type": "string"}},
+        "enemy": {"type": "string"}
+      }
+    },
+    "language": {
+      "type": "object",
+      "required": ["primary"],
+      "properties": {
+        "primary": {"type": "string", "minLength": 2},
+        "variant": {"type": "string"},
+        "secondary": {"type": "array", "items": {"type": "string"}},
+        "reading_level": {"type": "string"}
+      }
+    },
+    "voice": {
+      "type": "object",
+      "required": ["tone"],
+      "properties": {
+        "tone": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+        "personality": {"type": "array", "items": {"type": "string"}},
+        "on_camera": {"type": "string"},
+        "pace_wpm": {"type": "number", "minimum": 90, "maximum": 260},
+        "words_i_use": {"type": "array", "items": {"type": "string"}},
+        "words_i_never_use": {"type": "array", "items": {"type": "string"}},
+        "sample_texts": {"type": "array", "items": {"type": "string"}},
+        "emoji_policy": {"type": "string", "enum": ["none", "sparse", "moderate", "heavy"]},
+        "profanity": {"type": "boolean"}
+      }
+    },
+    "content": {
+      "type": "object",
+      "properties": {
+        "formats_preferred": {"type": "array", "items": {"type": "string", "enum": ["reel", "carousel", "single", "story", "live", "trial-reel"]}},
+        "formats_avoid": {"type": "array", "items": {"type": "string"}},
+        "posts_per_week": {"type": "integer", "minimum": 0, "maximum": 28},
+        "stories_per_day": {"type": "integer", "minimum": 0, "maximum": 30},
+        "posting_days": {"type": "array", "items": {"type": "string", "enum": ["mon", "tue", "wed", "thu", "fri", "sat", "sun"]}},
+        "best_times": {"type": "array", "items": {"type": "string"}},
+        "topics_avoid": {"type": "array", "items": {"type": "string"}},
+        "mix": {
+          "type": "object",
+          "properties": {
+            "educational": {"type": "number", "minimum": 0, "maximum": 1},
+            "entertaining": {"type": "number", "minimum": 0, "maximum": 1},
+            "community": {"type": "number", "minimum": 0, "maximum": 1},
+            "promotional": {"type": "number", "minimum": 0, "maximum": 1}
+          }
+        }
+      }
+    },
+    "visual": {
+      "type": "object",
+      "properties": {
+        "style": {"type": "string"},
+        "colors": {"type": "array", "items": {"type": "string"}},
+        "fonts": {"type": "array", "items": {"type": "string"}},
+        "face_on_camera": {"type": "boolean"},
+        "settings": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "restrictions": {
+      "type": "object",
+      "properties": {
+        "never_say": {"type": "array", "items": {"type": "string"}},
+        "topics_off_limits": {"type": "array", "items": {"type": "string"}},
+        "disclaimers": {"type": "array", "items": {"type": "string"}},
+        "compliance_notes": {"type": "string"}
+      }
+    },
+    "goals": {
+      "type": "object",
+      "properties": {
+        "primary": {"type": "string"},
+        "secondary": {"type": "array", "items": {"type": "string"}},
+        "kpis": {"type": "array", "items": {"type": "string"}},
+        "cta": {
+          "type": "object",
+          "properties": {
+            "keyword": {"type": "string"},
+            "keyword_delivers": {"type": "string"},
+            "link_in_bio": {"type": "string"},
+            "offer_url": {"type": "string"}
+          }
+        }
+      }
+    },
+    "verified_facts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["claim"],
+        "properties": {
+          "claim": {"type": "string", "minLength": 1},
+          "source": {"type": "string"},
+          "date": {"type": "string"}
+        }
+      }
+    }
+  }
+}

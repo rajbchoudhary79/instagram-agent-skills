@@ -1,0 +1,25 @@
+{
+  "_about": "Comment triage rules for triage.py. Categories are checked in order; the first match wins. Patterns are case-insensitive regexes. priority: higher = answer first. action: what the reply assistant does with it.",
+  "categories": [
+    {"id": "spam", "priority": 0, "action": "hide or delete; never reply",
+     "patterns": ["promote (?:it|this|your page) on", "send (?:it|this) to @", "\\bdm @", "check (?:my|our) (?:bio|page)", "\\bcrypto\\b", "\\bforex\\b", "investment (?:opportunity|plan)", "\\bwhatsapp\\b", "\\btelegram\\b", "free followers", "earn \\$\\d", "make money (?:from home|online)", "cash ?app", "https?://", "\\bwww\\."]},
+    {"id": "keyword", "priority": 85, "action": "deliver what the keyword promises (DM via official tools), reply briefly in public",
+     "patterns": []},
+    {"id": "lead", "priority": 100, "action": "reply publicly, invite to DM; flag for the creator",
+     "patterns": ["how much", "\\bprice\\b.*\\?", "\\bpricing\\b.*\\?", "\\bcost\\b.*\\?", "\\brates?\\b.*\\?", "\\bhire you\\b", "work with you", "\\bavailable\\b.*\\?", "\\bbook(?:ing)?\\b.*\\?", "\\bcoaching\\b", "\\bdo you (?:offer|do|have|take)\\b", "\\bsign me up\\b", "where (?:can|do) i (?:buy|get|sign)", "\\binterested\\b", "\\bcourse\\b.*\\?", "\\bconsult"]},
+    {"id": "support", "priority": 90, "action": "reply fast, move to DM, flag for the creator",
+     "patterns": ["didn'?t (?:get|receive)", "not working", "\\bbroken\\b", "\\brefund\\b", "can'?t (?:access|download|open|find)", "still waiting", "\\bissue\\b", "\\berror\\b", "\\bhelp\\b.*\\b(?:order|link|download|access)"]},
+    {"id": "question", "priority": 70, "action": "answer in the reply; consider a reply-reel if several ask",
+     "patterns": ["\\?\\s*$", "^(?:how|what|why|when|where|which|who|can|could|should|would|do|does|is|are)\\b", "\\bwondering\\b", "\\bany tips\\b"]},
+    {"id": "pushback", "priority": 65, "action": "reply with substance, once; do not argue twice",
+     "patterns": ["\\bdisagree\\b", "\\bwrong\\b", "doesn'?t work", "\\bnot true\\b", "\\bclickbait\\b", "\\bbad advice\\b", "\\bnonsense\\b", "\\bbs\\b", "easy for you to say", "\\bterrible\\b", "\\bmisleading\\b"]},
+    {"id": "story", "priority": 55, "action": "reply personally; it is a relationship, not a metric",
+     "patterns": ["\\bthis happened to me\\b", "\\bsame here\\b", "\\bi (?:just|literally|always|used to|tried|did)\\b", "\\bmy (?:client|boss|first|last)\\b", "\\bthis is me\\b"]},
+    {"id": "praise", "priority": 30, "action": "short, specific thanks; or a like",
+     "patterns": ["\\bthank", "\\blove (?:this|it)\\b", "\\bgreat\\b", "\\bamazing\\b", "\\bso (?:good|helpful|true)\\b", "\\bhelpful\\b", "\\bneeded this\\b", "\\bsaving this\\b", "\\bsaved\\b"]},
+    {"id": "tag", "priority": 20, "action": "like it; reply only if they add words",
+     "patterns": ["^\\s*(?:@[\\w.]+\\s*)+$"]},
+    {"id": "general", "priority": 25, "action": "like, or a short reply if there is something to say",
+     "patterns": []}
+  ]
+}

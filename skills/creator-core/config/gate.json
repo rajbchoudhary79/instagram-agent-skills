@@ -1,0 +1,14 @@
+{
+  "_about": "Final quality gate settings. For each content type: which rubrics run and the score under which the gate raises a WARN. Rubric scores never BLOCK on their own; hard failures are invisible characters, banned words, unverified claims and platform limits.",
+  "types": {
+    "caption":  {"rubrics": {"caption": 70, "human": 65}, "first_line": {"hook": 55}, "limits": "caption"},
+    "reel":     {"rubrics": {"human": 60, "storytelling": 45}, "first_line": {"hook": 65}},
+    "carousel": {"rubrics": {"human": 60, "storytelling": 45}, "first_line": {"hook": 60}},
+    "story":    {"rubrics": {"human": 60}},
+    "comment":  {"rubrics": {"comment": 70, "human": 50}},
+    "reply":    {"rubrics": {"human": 50}},
+    "dm":       {"rubrics": {"dm": 70, "human": 55}},
+    "bio":      {"rubrics": {"bio": 70}, "limits": "bio"},
+    "generic":  {"rubrics": {"human": 65}}
+  }
+}

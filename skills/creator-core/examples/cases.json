@@ -1,0 +1,90 @@
+{
+  "cases": [
+    {
+      "name": "gate passes a draft whose only number is a verified fact",
+      "run": [
+        "scripts/gate.py",
+        "examples/draft-ready.txt",
+        "--type",
+        "caption",
+        "--json"
+      ],
+      "expect": [
+        {
+          "path": "verdict",
+          "op": "in",
+          "value": [
+            "READY",
+            "REVIEW"
+          ]
+        },
+        {
+          "path": "checks",
+          "op": "none_id",
+          "value": "claim"
+        }
+      ]
+    },
+    {
+      "name": "gate blocks invented metrics",
+      "run": [
+        "scripts/gate.py",
+        "examples/draft-unverified.txt",
+        "--type",
+        "caption",
+        "--json"
+      ],
+      "expect": [
+        {
+          "path": "verdict",
+          "op": "==",
+          "value": "BLOCKED"
+        }
+      ]
+    },
+    {
+      "name": "verified before/after prices are accepted",
+      "run": [
+        "scripts/claims.py",
+        "examples/draft-verified-number.txt",
+        "--json"
+      ],
+      "expect": [
+        {
+          "path": "claims.0.verified",
+          "op": "==",
+          "value": true
+        }
+      ]
+    },
+    {
+      "name": "handoff example is valid",
+      "run": [
+        "scripts/handoff.py",
+        "validate",
+        "examples/handoff-example.json"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "profile fixture is valid and complete",
+      "run": [
+        "scripts/profile.py",
+        "check",
+        "--json"
+      ],
+      "expect": [
+        {
+          "path": "valid",
+          "op": "==",
+          "value": true
+        },
+        {
+          "path": "completeness",
+          "op": ">=",
+          "value": 90
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "cases": [
+    {
+      "name": "lead first, spam last",
+      "run": [
+        "scripts/triage.py",
+        "examples/comments.txt",
+        "--json"
+      ],
+      "expect": [
+        {
+          "path": "queue.0.category",
+          "op": "==",
+          "value": "lead"
+        },
+        {
+          "path": "queue.-1.category",
+          "op": "==",
+          "value": "spam"
+        },
+        {
+          "path": "counts.keyword",
+          "op": "==",
+          "value": 1
+        },
+        {
+          "path": "counts.support",
+          "op": "==",
+          "value": 1
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "_about": "Carousel rules checked by carousel.py. Platform limits come from creator-core/config/platform.json; these are craft limits you can tune.",
+  "roles": ["cover", "setup", "problem", "point", "step", "example", "proof", "myth", "truth", "recap", "cta"],
+  "recommended_slides": [5, 10],
+  "cover_max_words": 10,
+  "cover_max_chars": 60,
+  "headline_max_words": 12,
+  "body_max_words": 45,
+  "slide_max_words": 55,
+  "render": {
+    "width": 1080,
+    "height": 1350,
+    "margin": 96,
+    "headline_px": 84,
+    "cover_px": 104,
+    "body_px": 44,
+    "line_height": 1.25,
+    "char_width_ratio": 0.53,
+    "default_theme": {"bg": "#FFFFFF", "fg": "#111111", "accent": "#2F6FEB", "font": "Inter, Helvetica, Arial, sans-serif"}
+  }
+}

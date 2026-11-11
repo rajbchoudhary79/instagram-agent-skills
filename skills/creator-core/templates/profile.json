@@ -1,0 +1,116 @@
+{
+  "_help": "Shared creator profile. Every skill reads this before writing. Fill what you can; empty fields are fine and the skills will ask. Delete this _help key whenever you like. Run: python3 skills/creator-core/scripts/profile.py check",
+  "schema_version": 1,
+  "updated": "",
+  "identity": {
+    "name": "",
+    "handle": "",
+    "one_liner": "",
+    "offer": "",
+    "location": "",
+    "pronouns": ""
+  },
+  "niche": {
+    "primary": "",
+    "sub_niches": [],
+    "pillars": [
+      {
+        "name": "",
+        "share": 0.4,
+        "description": ""
+      },
+      {
+        "name": "",
+        "share": 0.3,
+        "description": ""
+      },
+      {
+        "name": "",
+        "share": 0.3,
+        "description": ""
+      }
+    ]
+  },
+  "audience": {
+    "who": "",
+    "identity_terms": [],
+    "pains": [],
+    "desires": [],
+    "objections": [],
+    "awareness": "",
+    "search_terms": []
+  },
+  "positioning": {
+    "statement": "",
+    "differentiators": [],
+    "peers": [],
+    "enemy": ""
+  },
+  "language": {
+    "primary": "en",
+    "variant": "",
+    "secondary": [],
+    "reading_level": ""
+  },
+  "voice": {
+    "tone": [
+      "direct"
+    ],
+    "personality": [],
+    "on_camera": "",
+    "pace_wpm": 160,
+    "words_i_use": [],
+    "words_i_never_use": [],
+    "sample_texts": [],
+    "emoji_policy": "sparse",
+    "profanity": false
+  },
+  "content": {
+    "formats_preferred": [
+      "reel",
+      "carousel"
+    ],
+    "formats_avoid": [],
+    "posts_per_week": 4,
+    "stories_per_day": 3,
+    "posting_days": [
+      "mon",
+      "tue",
+      "thu",
+      "sat"
+    ],
+    "best_times": [],
+    "topics_avoid": [],
+    "mix": {
+      "educational": 0.5,
+      "entertaining": 0.2,
+      "community": 0.2,
+      "promotional": 0.1
+    }
+  },
+  "visual": {
+    "style": "",
+    "colors": [],
+    "fonts": [],
+    "face_on_camera": true,
+    "settings": []
+  },
+  "restrictions": {
+    "never_say": [],
+    "topics_off_limits": [],
+    "disclaimers": [],
+    "compliance_notes": ""
+  },
+  "goals": {
+    "primary": "",
+    "secondary": [],
+    "kpis": [],
+    "cta": {
+      "keyword": "",
+      "keyword_delivers": "",
+      "link_in_bio": "",
+      "offer_url": ""
+    }
+  },
+  "verified_facts": []
+}

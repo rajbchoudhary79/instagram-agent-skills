@@ -1,0 +1,12 @@
+{
+  "date": "2026-11-12",
+  "goal": "Keyword DMs for the starter rescue checklist",
+  "frames": [
+    {"purpose": "hook", "type": "video", "script": "A student just sent me a photo of a starter she was about to throw out. Here's what I told her instead.", "on_screen": "She almost binned it", "visual": "Selfie at the kitchen counter, starter jar in hand"},
+    {"purpose": "interact", "type": "text", "on_screen": "Have you ever thrown out a starter?", "sticker": {"type": "poll", "prompt": "Ever binned a starter?", "options": ["Yes, more than once", "Never"]}},
+    {"purpose": "value", "type": "photo", "on_screen": "Feed twice a day. Keep it warm. Wait three days.", "visual": "Photo of the jar with rubber bands marking each rise"},
+    {"purpose": "interact", "type": "text", "on_screen": "Where should a sluggish starter live?", "sticker": {"type": "quiz", "prompt": "Best spot for a slow starter?", "options": ["The fridge", "Inside the oven with the light on", "A cold windowsill"], "correct": 1}},
+    {"purpose": "convert", "type": "video", "script": "If you want the checklist, DM me the word STARTER and I'll send it over.", "on_screen": "DM me STARTER"},
+    {"purpose": "close", "type": "text", "on_screen": "Tomorrow: the weeknight bake schedule", "sticker": {"type": "question", "prompt": "What time do you usually get to bake?"}}
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "cases": [
+    {
+      "name": "good caption is READY",
+      "run": [
+        "scripts/caption_lint.py",
+        "examples/good-caption.txt",
+        "--json"
+      ],
+      "exit": 0,
+      "expect": [
+        {
+          "path": "results.0.verdict",
+          "op": "==",
+          "value": "READY"
+        },
+        {
+          "path": "results.0.caption_score.score",
+          "op": ">=",
+          "value": 80
+        }
+      ]
+    },
+    {
+      "name": "bad caption is BLOCKED",
+      "run": [
+        "scripts/caption_lint.py",
+        "examples/bad-caption.txt",
+        "--json"
+      ],
+      "exit": 2,
+      "expect": [
+        {
+          "path": "results.0.verdict",
+          "op": "==",
+          "value": "BLOCKED"
+        },
+        {
+          "path": "results.0.caption_score.score",
+          "op": "<",
+          "value": 55
+        }
+      ]
+    },
+    {
+      "name": "variants compared",
+      "run": [
+        "scripts/caption_lint.py",
+        "examples/variants.txt",
+        "--split",
+        "blocks",
+        "--json"
+      ],
+      "expect": [
+        {
+          "path": "results",
+          "op": "len",
+          "value": 2
+        }
+      ]
+    }
+  ]
+}

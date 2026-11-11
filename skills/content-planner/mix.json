@@ -1,0 +1,14 @@
+{
+  "_about": "Fallbacks for the planner when the creator profile does not set them. Profile values always win.",
+  "mix": {"educational": 0.5, "entertaining": 0.2, "community": 0.2, "promotional": 0.1},
+  "formats": ["reel", "carousel"],
+  "format_weights": {"reel": 3, "carousel": 2, "single": 1, "trial-reel": 1, "live": 1},
+  "posts_per_week": 4,
+  "posting_days": ["mon", "tue", "thu", "sat"],
+  "type_definitions": {
+    "educational": "Teaches one usable thing: how-to, mistake, framework, myth.",
+    "entertaining": "Relatable skit, POV, behind the scenes, story. Builds liking.",
+    "community": "Starts conversation: questions, polls, replies to comments, audience wins (with permission).",
+    "promotional": "The offer, a launch, a case study with verified results, a testimonial with permission."
+  }
+}

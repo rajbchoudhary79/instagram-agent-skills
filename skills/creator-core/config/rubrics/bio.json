@@ -1,0 +1,129 @@
+{
+  "id": "bio",
+  "name": "Bio quality",
+  "version": 1,
+  "applies_to": [
+    "Instagram bio"
+  ],
+  "measures": "Whether the bio says who it is for, what they get, why trust it, and what to do next, inside 150 characters.",
+  "limitations": [
+    "Cannot see the profile photo, name field or highlights; profile-auditor's audit covers those.",
+    "Proof is detected as concrete detail; whether it is true is checked by the gate against verified facts."
+  ],
+  "bands": {
+    "strong": 80,
+    "ok": 55
+  },
+  "criteria": [
+    {
+      "id": "fits",
+      "label": "Fits",
+      "weight": 20,
+      "measures": "Uses the space without hitting the limit.",
+      "rules": [
+        {
+          "feature": "char_count",
+          "type": "range",
+          "ideal": [
+            60,
+            150
+          ],
+          "zero_at": [
+            10,
+            170
+          ],
+          "why": "60-150 characters."
+        }
+      ]
+    },
+    {
+      "id": "who_what",
+      "label": "Who + what",
+      "weight": 30,
+      "measures": "Names the audience and the outcome.",
+      "rules": [
+        {
+          "feature": "audience_hit",
+          "type": "bool",
+          "true": 100,
+          "false": 40,
+          "why": "Audience named in their words.",
+          "fix": "Name who it is for.",
+          "unmeasured": "no creator profile loaded"
+        },
+        {
+          "feature": "specificity_hits",
+          "type": "min",
+          "zero_at": 0,
+          "good": 1,
+          "why": "A concrete outcome or proof point.",
+          "fix": "Add the specific outcome."
+        }
+      ]
+    },
+    {
+      "id": "cta",
+      "label": "Next step",
+      "weight": 20,
+      "measures": "Tells the visitor what to do.",
+      "rules": [
+        {
+          "feature": "has_ask",
+          "type": "bool",
+          "true": 100,
+          "false": 50,
+          "why": "One action, pointing at the link or a keyword.",
+          "fix": "End with the action and where it goes."
+        }
+      ]
+    },
+    {
+      "id": "search",
+      "label": "Search phrase",
+      "weight": 15,
+      "measures": "Contains the phrase people search for.",
+      "rules": [
+        {
+          "feature": "keyword_coverage",
+          "type": "min",
+          "zero_at": 0,
+          "good": 1,
+          "why": "Search phrases present.",
+          "unmeasured": "no keywords given"
+        }
+      ]
+    },
+    {
+      "id": "clean",
+      "label": "Clean",
+      "weight": 15,
+      "measures": "No slop, light emoji.",
+      "rules": [
+        {
+          "feature": "slop_count",
+          "type": "max",
+          "good": 0,
+          "zero_at": 2,
+          "why": "Slop."
+        },
+        {
+          "feature": "emoji_count",
+          "type": "max",
+          "good": 3,
+          "zero_at": 8,
+          "why": "Emoji."
+        }
+      ]
+    }
+  ],
+  "dealbreakers": [
+    {
+      "id": "over",
+      "feature": "char_count",
+      "op": ">",
+      "value": 150,
+      "cap": 30,
+      "message": "Over the 150 character bio limit."
+    }
+  ]
+}

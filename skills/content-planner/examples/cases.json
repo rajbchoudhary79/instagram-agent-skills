@@ -1,0 +1,66 @@
+{
+  "cases": [
+    {
+      "name": "plan a week",
+      "run": [
+        "scripts/planner.py",
+        "plan",
+        "--start",
+        "2026-11-16",
+        "--weeks",
+        "1"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "slots created with pillar and type",
+      "run": [
+        "scripts/planner.py",
+        "--json",
+        "list"
+      ],
+      "expect": [
+        {
+          "path": "",
+          "op": "len",
+          "value": 4
+        },
+        {
+          "path": "0.status",
+          "op": "==",
+          "value": "slot"
+        },
+        {
+          "path": "0.pillar",
+          "op": "==",
+          "value": "Starter care"
+        }
+      ]
+    },
+    {
+      "name": "status moves",
+      "run": [
+        "scripts/planner.py",
+        "status",
+        "c-0001",
+        "drafted"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "balance close to targets",
+      "run": [
+        "scripts/planner.py",
+        "--json",
+        "balance"
+      ],
+      "expect": [
+        {
+          "path": "items",
+          "op": "==",
+          "value": 4
+        }
+      ]
+    }
+  ]
+}

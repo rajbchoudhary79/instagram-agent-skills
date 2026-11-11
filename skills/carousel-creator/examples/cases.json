@@ -1,0 +1,46 @@
+{
+  "cases": [
+    {
+      "name": "good carousel READY",
+      "run": [
+        "scripts/carousel.py",
+        "examples/good-carousel.json",
+        "--json"
+      ],
+      "exit": 0,
+      "expect": [
+        {
+          "path": "verdict",
+          "op": "==",
+          "value": "READY"
+        },
+        {
+          "path": "cover_hook",
+          "op": ">=",
+          "value": 80
+        }
+      ]
+    },
+    {
+      "name": "bad carousel needs review",
+      "run": [
+        "scripts/carousel.py",
+        "examples/bad-carousel.json",
+        "--json"
+      ],
+      "exit": 1,
+      "expect": [
+        {
+          "path": "verdict",
+          "op": "==",
+          "value": "REVIEW"
+        },
+        {
+          "path": "storytelling",
+          "op": "<",
+          "value": 60
+        }
+      ]
+    }
+  ]
+}

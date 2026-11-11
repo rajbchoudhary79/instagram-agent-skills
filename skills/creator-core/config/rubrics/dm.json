@@ -1,0 +1,158 @@
+{
+  "id": "dm",
+  "name": "DM quality",
+  "version": 1,
+  "applies_to": [
+    "direct messages"
+  ],
+  "measures": "Whether a DM reads as a person writing to one person: personal, short, one question, no pressure, no unfilled placeholders.",
+  "limitations": [
+    "Personalisation is measured against the context you supply (--post: their post, comment or last message). Without it, that criterion is skipped.",
+    "Does not check messaging-policy timing (24-hour window, who messaged first). dm.py and the SKILL.md rules handle that."
+  ],
+  "bands": {
+    "strong": 80,
+    "ok": 55
+  },
+  "criteria": [
+    {
+      "id": "personal",
+      "label": "Personal",
+      "weight": 30,
+      "measures": "References them, not a template.",
+      "rules": [
+        {
+          "feature": "context_overlap",
+          "type": "min",
+          "zero_at": 0,
+          "good": 2,
+          "why": "Words shared with their post / message.",
+          "fix": "Reference the specific thing they said or made.",
+          "unmeasured": "no context given (--post)"
+        },
+        {
+          "feature": "placeholder_count",
+          "type": "max",
+          "good": 0,
+          "zero_at": 1,
+          "why": "Unfilled {{placeholders}}.",
+          "fix": "Fill every placeholder before sending."
+        }
+      ]
+    },
+    {
+      "id": "brevity",
+      "label": "Brevity",
+      "weight": 20,
+      "measures": "Readable in the preview.",
+      "rules": [
+        {
+          "feature": "word_count",
+          "type": "range",
+          "ideal": [
+            12,
+            90
+          ],
+          "zero_at": [
+            3,
+            200
+          ],
+          "why": "15-90 words.",
+          "fix": "Cut to one reason and one question."
+        }
+      ]
+    },
+    {
+      "id": "one_question",
+      "label": "One question",
+      "weight": 20,
+      "measures": "One easy thing to answer.",
+      "rules": [
+        {
+          "feature": "question_count",
+          "type": "range",
+          "ideal": [
+            1,
+            2
+          ],
+          "zero_at": [
+            -1,
+            5
+          ],
+          "why": "One or two questions max."
+        }
+      ]
+    },
+    {
+      "id": "tone",
+      "label": "No pressure",
+      "weight": 20,
+      "measures": "No sales pressure or template phrases.",
+      "rules": [
+        {
+          "feature": "pushy_count",
+          "type": "max",
+          "good": 0,
+          "zero_at": 2,
+          "why": "Pressure and template phrases.",
+          "fix": "Remove urgency; make it easy to say no."
+        },
+        {
+          "feature": "slop_count",
+          "type": "max",
+          "good": 0,
+          "zero_at": 2,
+          "why": "Slop."
+        }
+      ]
+    },
+    {
+      "id": "clean",
+      "label": "Clean",
+      "weight": 10,
+      "measures": "No cold links, few emoji.",
+      "rules": [
+        {
+          "feature": "link_count",
+          "type": "max",
+          "good": 0,
+          "zero_at": 2,
+          "why": "A link in a first message looks like spam."
+        },
+        {
+          "feature": "emoji_count",
+          "type": "max",
+          "good": 2,
+          "zero_at": 6,
+          "why": "Emoji."
+        }
+      ]
+    }
+  ],
+  "dealbreakers": [
+    {
+      "id": "spam",
+      "feature": "spam_count",
+      "op": ">=",
+      "value": 1,
+      "cap": 10,
+      "message": "Spam marker."
+    },
+    {
+      "id": "pushy",
+      "feature": "pushy_count",
+      "op": ">=",
+      "value": 2,
+      "cap": 45,
+      "message": "Multiple pressure phrases."
+    },
+    {
+      "id": "placeholder",
+      "feature": "placeholder_count",
+      "op": ">=",
+      "value": 1,
+      "cap": 50,
+      "message": "Unfilled placeholder. Do not send."
+    }
+  ]
+}

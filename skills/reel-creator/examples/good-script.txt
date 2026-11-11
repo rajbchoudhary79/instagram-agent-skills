@@ -1,0 +1,7 @@
+# Reel: feed in the morning, bake after work. Target 30s.
+HOOK: Strict feeding times are wrong for home bakers. [text: Strict feeding times = wrong] [visual: alarm going off next to the starter jar]
+I used to feed it at midnight. Half the time I was too tired to bake. [visual: dark kitchen, me yawning] [cut]
+So I moved it. Feed before work, mix at six, fridge overnight. [text: Feed. Mix. Fridge.] [zoom]
+The fridge does the slow part while I sleep. [visual: dough tub sliding onto a fridge shelf]
+In 2025 I taught 220 students this schedule. [text: 220 students] [cut]
+CTA: Comment STARTER and I'll send you the rescue checklist. [text: Comment STARTER]

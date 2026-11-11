@@ -1,0 +1,33 @@
+{
+  "cases": [
+    {
+      "name": "finds the method segment first",
+      "run": [
+        "scripts/segment.py",
+        "examples/episode.srt",
+        "--window",
+        "20",
+        "--top",
+        "3",
+        "--json"
+      ],
+      "expect": [
+        {
+          "path": "timed",
+          "op": "==",
+          "value": true
+        },
+        {
+          "path": "moments.0.start",
+          "op": "==",
+          "value": 46.0
+        },
+        {
+          "path": "moments.-1.score",
+          "op": "<",
+          "value": 40
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "cases": [
+    {
+      "name": "specific comment scores strong",
+      "run": [
+        "scripts/core.py",
+        "score",
+        "--rubric",
+        "comment",
+        "examples/good-comment.txt",
+        "--post",
+        "examples/post.txt",
+        "--json"
+      ],
+      "expect": [
+        {
+          "path": "results.score",
+          "op": ">=",
+          "value": 80
+        }
+      ]
+    },
+    {
+      "name": "generic promo comment capped",
+      "run": [
+        "scripts/core.py",
+        "score",
+        "--rubric",
+        "comment",
+        "examples/bad-comment.txt",
+        "--post",
+        "examples/post.txt",
+        "--json"
+      ],
+      "expect": [
+        {
+          "path": "results.score",
+          "op": "<=",
+          "value": 20
+        }
+      ]
+    },
+    {
+      "name": "emoji-only comment is generic",
+      "run": [
+        "scripts/core.py",
+        "score",
+        "--rubric",
+        "comment",
+        "examples/emoji-comment.txt",
+        "--json"
+      ],
+      "expect": [
+        {
+          "path": "results.score",
+          "op": "<=",
+          "value": 20
+        }
+      ]
+    }
+  ]
+}

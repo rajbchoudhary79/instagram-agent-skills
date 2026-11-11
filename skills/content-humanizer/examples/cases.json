@@ -1,0 +1,57 @@
+{
+  "cases": [
+    {
+      "name": "slop-heavy draft scores weak",
+      "run": [
+        "scripts/rewrite_check.py",
+        "report",
+        "examples/before.txt",
+        "--json"
+      ],
+      "expect": [
+        {
+          "path": "score.score",
+          "op": "<",
+          "value": 55
+        },
+        {
+          "path": "findings",
+          "op": "any_kind",
+          "value": "invisible"
+        }
+      ]
+    },
+    {
+      "name": "rewrite scores strong",
+      "run": [
+        "scripts/rewrite_check.py",
+        "report",
+        "examples/after.txt",
+        "--json"
+      ],
+      "expect": [
+        {
+          "path": "score.score",
+          "op": ">=",
+          "value": 80
+        }
+      ]
+    },
+    {
+      "name": "clean removes invisible characters",
+      "run": [
+        "scripts/rewrite_check.py",
+        "clean",
+        "examples/before.txt",
+        "--json"
+      ],
+      "expect": [
+        {
+          "path": "changes",
+          "op": "any_contains",
+          "value": "zero width space"
+        }
+      ]
+    }
+  ]
+}

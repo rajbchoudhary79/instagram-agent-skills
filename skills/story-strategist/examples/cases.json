@@ -1,0 +1,41 @@
+{
+  "cases": [
+    {
+      "name": "good sequence READY",
+      "run": [
+        "scripts/story.py",
+        "examples/good-sequence.json",
+        "--json"
+      ],
+      "exit": 0,
+      "expect": [
+        {
+          "path": "verdict",
+          "op": "==",
+          "value": "READY"
+        }
+      ]
+    },
+    {
+      "name": "bad sequence BLOCKED",
+      "run": [
+        "scripts/story.py",
+        "examples/bad-sequence.json",
+        "--json"
+      ],
+      "exit": 2,
+      "expect": [
+        {
+          "path": "verdict",
+          "op": "==",
+          "value": "BLOCKED"
+        },
+        {
+          "path": "checks",
+          "op": "any_id",
+          "value": "funnel"
+        }
+      ]
+    }
+  ]
+}

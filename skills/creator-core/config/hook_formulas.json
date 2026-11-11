@@ -1,0 +1,279 @@
+{
+  "_about": "Hook formula library shared by reel-creator (writing), viral-researcher and performance-auditor (classifying). 'match' is a case-insensitive regex used to recognise the formula in existing hooks; it is a heuristic. Examples use {{placeholders}} wherever a real number or result would go: fill them with true facts or pick another formula.",
+  "version": 1,
+  "families": {
+    "contrarian": "Challenges a belief the viewer holds. Earns attention through disagreement.",
+    "curiosity": "Opens a gap the viewer wants closed.",
+    "story": "Starts mid-event. Earns attention through a person and a moment.",
+    "proof": "Leads with a result or a stake. Only usable with true numbers.",
+    "utility": "Promises a specific, usable thing.",
+    "identity": "Calls out exactly who this is for.",
+    "demo": "Shows instead of tells. Hook is visual first."
+  },
+  "formulas": [
+    {
+      "id": "wrong_default",
+      "family": "contrarian",
+      "name": "The wrong default",
+      "template": "{common advice} is wrong for {audience}.",
+      "example": "Feeding your starter on a strict clock is wrong for home bakers.",
+      "on_screen": "Strict feeding clock = wrong",
+      "use_for": "Strong opinion you will defend in the comments.",
+      "avoid_when": "You only half believe it. Rage-bait without a real argument gets hate-watched, not saved.",
+      "match": "\\b(?:is|are) (?:wrong|bad advice|a lie|a trap|overrated|backwards)\\b"
+    },
+    {
+      "id": "swap_habit",
+      "family": "contrarian",
+      "name": "Swap the habit",
+      "template": "Quit {visible habit}; {better habit} gets you {result}.",
+      "example": "Quit feeding your starter at midnight; a morning feed fits a work day.",
+      "on_screen": "Midnight feeds? Quit.",
+      "use_for": "Replacing one habit with a better one.",
+      "avoid_when": "The habit is vague ('stop overthinking'). It must be a visible action.",
+      "match": "^\\s*(?:stop|quit|ditch|swap) (?!scrolling)\\w+"
+    },
+    {
+      "id": "myth_check",
+      "family": "contrarian",
+      "name": "Myth check",
+      "template": "\"{belief}\" isn't true. Here's what is.",
+      "example": "\"Sourdough needs a whole weekend\" isn't true. Here's a weeknight schedule.",
+      "on_screen": "Myth: sourdough takes all weekend",
+      "use_for": "A belief your audience repeats.",
+      "avoid_when": "Nobody in your audience actually believes it.",
+      "match": "\\b(?:myth|isn'?t true|is not true|not actually true|that'?s false)\\b"
+    },
+    {
+      "id": "hard_way",
+      "family": "curiosity",
+      "name": "Learned the hard way",
+      "template": "{Audience} learn this the hard way: {uncomfortable truth}.",
+      "example": "Home bakers learn this the hard way: the fridge does most of the work.",
+      "on_screen": "The fridge does the work",
+      "use_for": "An insider truth with a cost attached.",
+      "avoid_when": "The truth is common knowledge in your niche.",
+      "match": "\\bthe hard way\\b|\\b(?:nobody|no one) (?:tells|told|talks about|mentions|warns)\\b"
+    },
+    {
+      "id": "real_reason",
+      "family": "curiosity",
+      "name": "The real reason",
+      "template": "The real reason {problem} is {non-obvious cause}.",
+      "example": "The real reason your loaf spreads flat is a starter fed too long ago.",
+      "on_screen": "Why loaves spread flat",
+      "use_for": "Diagnosing a pain your audience has felt.",
+      "avoid_when": "You cannot name the cause in the next sentence.",
+      "match": "\\b(?:the real reason|the actual reason|here'?s why|this is why)\\b"
+    },
+    {
+      "id": "what_happens",
+      "family": "curiosity",
+      "name": "What happens when",
+      "template": "Here's what happens when you {action}.",
+      "example": "Here's what happens when you bake with a starter that peaked six hours ago.",
+      "on_screen": "Peaked 6 hours ago?",
+      "use_for": "Consequences of a choice viewers are weighing.",
+      "avoid_when": "You have not actually seen it happen.",
+      "match": "\\bwhat (?:happens|happened) (?:when|if|after)\\b"
+    },
+    {
+      "id": "one_thing",
+      "family": "curiosity",
+      "name": "The one thing",
+      "template": "The one {thing} that {specific result}.",
+      "example": "The one step that stops your dough sticking to the basket.",
+      "on_screen": "1 step. No sticking.",
+      "use_for": "A single, quotable fix.",
+      "avoid_when": "It is really five things.",
+      "match": "\\bthe (?:one|only|single) (?:thing|line|word|question|change|habit|step|mistake)\\b"
+    },
+    {
+      "id": "mid_scene",
+      "family": "story",
+      "name": "Mid-scene",
+      "template": "{When}, {specific event happened}.",
+      "example": "Last March my starter grew a grey layer the night before a workshop.",
+      "on_screen": "Grey layer. Workshop tomorrow.",
+      "use_for": "A true moment with a turn coming.",
+      "avoid_when": "The story has no turn. A diary entry is not a story.",
+      "match": "^\\s*(?:last (?:week|month|year|march|april|may|june|july|august|september|october|november|december|january|february)|yesterday|years ago|in 20\\d\\d|this morning|one day)\\b"
+    },
+    {
+      "id": "confession",
+      "family": "story",
+      "name": "Confession",
+      "template": "I was wrong about {thing}.",
+      "example": "I was wrong about feeding my starter every single night.",
+      "on_screen": "I was wrong",
+      "use_for": "Credibility through admitting a mistake.",
+      "avoid_when": "The 'mistake' is a humblebrag.",
+      "match": "\\bi (?:was wrong|used to (?:think|believe)|got this wrong|messed (?:this )?up)\\b"
+    },
+    {
+      "id": "experiment",
+      "family": "story",
+      "name": "The experiment",
+      "template": "I {kept doing one thing} for {time}. Here's how it went.",
+      "example": "I kept my starter in the fridge for {{N}} weeks. Here's how it baked.",
+      "on_screen": "{{N}} weeks in the fridge",
+      "use_for": "Experiments you actually ran.",
+      "avoid_when": "You did not run it. Never invent the experiment.",
+      "match": "\\bi (?:tried|tested|ran|kept|stopped|quit|skipped|spent) [^.]{1,40}\\bfor (?:\\w+|\\{\\{\\w+\\}\\}) (?:days|weeks|months|years)\\b"
+    },
+    {
+      "id": "price_of_error",
+      "family": "proof",
+      "name": "What the mistake took",
+      "template": "One {mistake}, and I lost {true amount}.",
+      "example": "One wrong oven setting, and I lost {{N}} loaves in a single bake.",
+      "on_screen": "{{N}} loaves, gone",
+      "use_for": "A real loss with a lesson.",
+      "avoid_when": "You do not have the real number. Never estimate it on camera.",
+      "match": "\\b(?:cost me|i lost|lost me|wasted)\\b"
+    },
+    {
+      "id": "from_to",
+      "family": "proof",
+      "name": "From / to",
+      "template": "From {before state} to {after state}. One change.",
+      "example": "From a dense brick to {{your result}} in one week. One change.",
+      "on_screen": "Brick -> {{result}}",
+      "use_for": "A verified transformation.",
+      "avoid_when": "The after state is not verified.",
+      "match": "\\bfrom [^.]{1,30} to [^.]{1,30}\\b|->|→"
+    },
+    {
+      "id": "show_artifact",
+      "family": "proof",
+      "name": "Show the thing",
+      "template": "Here's the {artifact} I actually use for {situation}.",
+      "example": "Here's the exact bake schedule I used for {{N}} workday loaves.",
+      "on_screen": "My actual schedule",
+      "use_for": "Showing a real artifact on screen.",
+      "avoid_when": "You cannot show it.",
+      "match": "^\\s*(?:this is|here'?s) (?:the|my) (?:exact |actual |real )?(?:[\\w-]+ ){1,3}(?:that|which|i)\\b"
+    },
+    {
+      "id": "numbered_list",
+      "family": "utility",
+      "name": "Numbered list",
+      "template": "{N} {things} that {specific outcome}.",
+      "example": "3 signs that your starter is ready to bake with.",
+      "on_screen": "3 signs it's ready",
+      "use_for": "Save-worthy, list-shaped value.",
+      "avoid_when": "The items are padding. Two great beats five fine.",
+      "match": "^\\s*(?:\\d{1,2}|three|four|five|six|seven) [a-z]+(?: [a-z]+)? (?:that|to|for|i|you|every|most)\\b"
+    },
+    {
+      "id": "how_to_without",
+      "family": "utility",
+      "name": "How to, without",
+      "template": "How to {result} without {pain}.",
+      "example": "How to bake sourdough on a weeknight without staying up past ten.",
+      "on_screen": "Weeknight loaf. Bed by ten.",
+      "use_for": "Result plus the objection, in one line.",
+      "avoid_when": "The 'without' is generic ('without stress').",
+      "match": "\\bhow (?:to|i) [^.]{1,50}\\bwithout\\b"
+    },
+    {
+      "id": "template_share",
+      "family": "utility",
+      "name": "Copy my template",
+      "template": "Copy my {artifact} for {situation}.",
+      "example": "Copy my feeding chart for the week your kitchen runs cold.",
+      "on_screen": "Free: my feeding chart",
+      "use_for": "Templates, scripts, checklists.",
+      "avoid_when": "There is nothing to copy.",
+      "match": "\\b(?:copy|take|use|grab) (?:my|this|these)\\b"
+    },
+    {
+      "id": "before_you",
+      "family": "utility",
+      "name": "Before you",
+      "template": "Before you {action}, {check}.",
+      "example": "Before you throw out your starter, try one warm feed.",
+      "on_screen": "Before you bin it",
+      "use_for": "A checklist moment right before a common action.",
+      "avoid_when": "The check is obvious.",
+      "match": "^\\s*(?:before you|don'?t \\w+ (?:until|before))\\b"
+    },
+    {
+      "id": "name_the_viewer",
+      "family": "identity",
+      "name": "Name the viewer",
+      "template": "If you're {specific person} {specific situation}, {instruction}.",
+      "example": "If you're a home baker whose loaves spread flat, check your starter first.",
+      "on_screen": "Loaves spreading flat?",
+      "use_for": "Precise targeting; reaches fewer, converts more.",
+      "avoid_when": "The person is broad ('if you're a creator').",
+      "match": "^\\s*(?:if you'?re|if you are|if you)\\b"
+    },
+    {
+      "id": "pov",
+      "family": "identity",
+      "name": "POV",
+      "template": "POV: {situation your audience is in}.",
+      "example": "POV: your starter smells like nail polish the morning you planned to bake.",
+      "on_screen": "POV: it smells like nail polish",
+      "use_for": "Relatable skits and reactions.",
+      "avoid_when": "The situation is not instantly recognisable to your audience.",
+      "match": "^\\s*pov\\b"
+    },
+    {
+      "id": "question_direct",
+      "family": "identity",
+      "name": "Direct question",
+      "template": "{Audience}, {pointed yes/no question}?",
+      "example": "Bakers, do you feed your starter before or after work?",
+      "on_screen": "Before or after work?",
+      "use_for": "Starting an argument in the comments.",
+      "avoid_when": "The answer is obvious.",
+      "match": "^\\s*[\\w ]{2,30},\\s+(?:do|does|are|is|have|would|should|can|did)\\b[^?]*\\?"
+    },
+    {
+      "id": "versus",
+      "family": "utility",
+      "name": "Versus",
+      "template": "{A} vs {B}: {verdict}.",
+      "example": "Rye vs white flour starter: only one survives a cold kitchen.",
+      "on_screen": "Rye vs white",
+      "use_for": "Decisions your audience is stuck on.",
+      "avoid_when": "You will not pick a side.",
+      "match": "\\b(?:vs\\.?|versus)\\b"
+    },
+    {
+      "id": "one_change_demo",
+      "family": "demo",
+      "name": "One-change demo",
+      "template": "Same {thing}, one change: {change}.",
+      "example": "Same dough, one change: an extra night in the fridge.",
+      "on_screen": "Same dough. One change.",
+      "use_for": "Visual before/after you can show.",
+      "avoid_when": "Nothing visibly changes on screen.",
+      "match": "^\\s*(?:same \\w+(?: \\w+)?, one change|watch (?:what|how|me|this))\\b"
+    },
+    {
+      "id": "object_first",
+      "family": "demo",
+      "name": "Object first",
+      "template": "This {object} {did something surprising}.",
+      "example": "This plastic tub fixed my sticky dough.",
+      "on_screen": "A plain plastic tub",
+      "use_for": "A physical or on-screen thing as the hook.",
+      "avoid_when": "The object is not on screen in the first second.",
+      "match": "^\\s*this (?:[a-z-]+ ){1,3}(?:replaced|changed|saved|fixed|killed|beat|doubled)\\b"
+    },
+    {
+      "id": "save_before",
+      "family": "utility",
+      "name": "Save before",
+      "template": "Save this for the next time {situation}.",
+      "example": "Save this for the next time your starter stops rising.",
+      "on_screen": "For the next flat starter",
+      "use_for": "Reference content people return to.",
+      "avoid_when": "It is not something people will actually come back to.",
+      "match": "^\\s*save this (?:for|before)\\b"
+    }
+  ]
+}

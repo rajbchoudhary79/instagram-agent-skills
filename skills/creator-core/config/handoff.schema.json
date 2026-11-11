@@ -1,0 +1,26 @@
+{
+  "_about": "The handoff packet one skill passes to the next. Keeps verified facts and assumptions separate as work moves through a pipeline.",
+  "type": "object",
+  "required": ["from", "to", "task", "payload", "verified", "assumptions"],
+  "properties": {
+    "from": {"type": "string", "pattern": "^([a-z][a-z0-9]*(?:-[a-z0-9]+)+|user)$"},
+    "to": {"type": "string", "pattern": "^([a-z][a-z0-9]*(?:-[a-z0-9]+)+|user)$"},
+    "task": {"type": "string", "minLength": 3},
+    "topic": {"type": "string"},
+    "created": {"type": "string"},
+    "payload": {"type": "object"},
+    "artifacts": {
+      "type": "array",
+      "items": {"type": "object", "required": ["kind"], "properties": {
+        "kind": {"type": "string", "enum": ["hook", "script", "caption", "carousel", "story", "research", "plan", "brief", "transcript", "audit", "comment", "reply", "dm", "bio", "other"]},
+        "path": {"type": "string"},
+        "text": {"type": "string"},
+        "score": {"type": "number"}
+      }}
+    },
+    "verified": {"type": "array", "items": {"type": "string"}},
+    "assumptions": {"type": "array", "items": {"type": "string"}},
+    "open_questions": {"type": "array", "items": {"type": "string"}},
+    "approval_required": {"type": "boolean"}
+  }
+}

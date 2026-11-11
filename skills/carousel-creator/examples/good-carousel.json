@@ -1,0 +1,12 @@
+{
+  "title": "Feed in the morning, bake after work",
+  "slides": [
+    {"role": "cover", "headline": "Stop feeding your starter at midnight", "visual": "Starter jar next to a clock showing 12:00, crossed out", "alt": "A jar of sourdough starter beside a clock at midnight, crossed out in red"},
+    {"role": "problem", "headline": "Midnight feeds feel dedicated", "body": "In practice, the starter peaks while you sleep and has sunk again by the time you are free to bake.", "alt": "Text slide"},
+    {"role": "proof", "headline": "What I saw", "body": "I used to feed mine at midnight. Half the time I was too tired to bake, so I moved the feed.", "alt": "Text slide"},
+    {"role": "step", "headline": "1. Feed before work", "body": "One feed at breakfast. It peaks by the time you get home.", "alt": "Text slide"},
+    {"role": "step", "headline": "2. Mix at six", "body": "Mix the dough as soon as you walk in, while the starter is at its peak.", "alt": "Text slide"},
+    {"role": "step", "headline": "3. Let the fridge work", "body": "Shape, then into the fridge overnight. Bake straight from cold the next evening.", "alt": "Text slide"},
+    {"role": "cta", "headline": "Want the full weeknight schedule?", "body": "Comment STARTER and I'll send you the checklist.", "alt": "Call to action"}
+  ]
+}

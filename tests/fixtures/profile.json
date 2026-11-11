@@ -1,0 +1,195 @@
+{
+  "schema_version": 1,
+  "updated": "2026-11-11",
+  "identity": {
+    "name": "Priya Nair",
+    "handle": "priyabakes",
+    "one_liner": "I help busy home bakers make sourdough that fits around a work week.",
+    "offer": "Weeknight Sourdough Guide: a bake schedule and a starter troubleshooting sheet",
+    "location": "Portland, OR",
+    "pronouns": ""
+  },
+  "niche": {
+    "primary": "sourdough for busy home bakers",
+    "sub_niches": [
+      "starter care",
+      "bake schedules"
+    ],
+    "pillars": [
+      {
+        "name": "Starter care",
+        "share": 0.4,
+        "description": "Feeding, reviving and reading a starter"
+      },
+      {
+        "name": "Bake schedules",
+        "share": 0.35,
+        "description": "Fitting a loaf around a work day"
+      },
+      {
+        "name": "Kitchen life",
+        "share": 0.25,
+        "description": "Behind the scenes of a small home kitchen"
+      }
+    ]
+  },
+  "audience": {
+    "who": "home bakers with full-time jobs who have tried sourdough once or twice",
+    "identity_terms": [
+      "home bakers",
+      "sourdough beginners",
+      "bakers"
+    ],
+    "pains": [
+      "flat loaves",
+      "a starter that won't rise",
+      "schedules that need a free weekend"
+    ],
+    "desires": [
+      "bake on weeknights",
+      "an open crumb without fuss"
+    ],
+    "objections": [
+      "I don't have time for sourdough"
+    ],
+    "awareness": "problem-aware",
+    "search_terms": [
+      "sourdough starter",
+      "beginner sourdough",
+      "sourdough schedule"
+    ]
+  },
+  "positioning": {
+    "statement": "Sourdough advice from someone who bakes around a 9-to-5, not a bakery.",
+    "differentiators": [
+      "shows the failed loaves too",
+      "no special equipment"
+    ],
+    "peers": [],
+    "enemy": "the all-weekend bake"
+  },
+  "language": {
+    "primary": "en",
+    "variant": "en-US",
+    "secondary": [],
+    "reading_level": "grade 6"
+  },
+  "voice": {
+    "tone": [
+      "direct",
+      "dry",
+      "warm"
+    ],
+    "personality": [
+      "patient",
+      "nerdy about timings"
+    ],
+    "on_camera": "calm, talks to camera at the kitchen counter",
+    "pace_wpm": 165,
+    "words_i_use": [
+      "the fridge does the work",
+      "crumb",
+      "honestly",
+      "here's the move"
+    ],
+    "words_i_never_use": [
+      "hustle",
+      "foolproof",
+      "hack",
+      "crushing it"
+    ],
+    "sample_texts": [
+      "Your starter is not dead. It is hungry. Feed it twice and wait.",
+      "I used to bake on Saturdays only. Then I let the fridge do the slow part, and now I bake on Tuesdays."
+    ],
+    "emoji_policy": "sparse",
+    "profanity": false
+  },
+  "content": {
+    "formats_preferred": [
+      "reel",
+      "carousel"
+    ],
+    "formats_avoid": [
+      "live"
+    ],
+    "posts_per_week": 4,
+    "stories_per_day": 3,
+    "posting_days": [
+      "mon",
+      "tue",
+      "thu",
+      "sat"
+    ],
+    "best_times": [
+      "08:30",
+      "18:00"
+    ],
+    "topics_avoid": [
+      "diet culture"
+    ],
+    "mix": {
+      "educational": 0.5,
+      "entertaining": 0.2,
+      "community": 0.2,
+      "promotional": 0.1
+    }
+  },
+  "visual": {
+    "style": "warm, flour-dusted counter, off-white backgrounds, one accent color, big type",
+    "colors": [
+      "#F5F1EA",
+      "#1F1F1F",
+      "#E4572E"
+    ],
+    "fonts": [
+      "Inter",
+      "Fraunces"
+    ],
+    "face_on_camera": true,
+    "settings": [
+      "kitchen counter",
+      "oven"
+    ]
+  },
+  "restrictions": {
+    "never_say": [
+      "guaranteed rise"
+    ],
+    "topics_off_limits": [
+      "politics"
+    ],
+    "disclaimers": [],
+    "compliance_notes": ""
+  },
+  "goals": {
+    "primary": "Sell the Weeknight Sourdough Guide",
+    "secondary": [
+      "grow email list"
+    ],
+    "kpis": [
+      "saves per reach",
+      "keyword DMs"
+    ],
+    "cta": {
+      "keyword": "STARTER",
+      "keyword_delivers": "the free starter rescue checklist",
+      "link_in_bio": "",
+      "offer_url": ""
+    }
+  },
+  "verified_facts": [
+    {
+      "claim": "Has baked sourdough at home every week for 7 years",
+      "source": "creator, 2026-11-11"
+    },
+    {
+      "claim": "Taught 220 students in online workshops in 2025",
+      "source": "creator's workshop sign-up export"
+    },
+    {
+      "claim": "Raised the workshop price from $35 to $60",
+      "source": "creator"
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "username": "priya.nair_bakes2019",
+  "name_field": "Priya Nair",
+  "bio": "Baker ✨ Plant mom 🌿 Dreamer 🌙 Living my best life | Portland",
+  "links": [],
+  "profile_photo": "full-body photo at a farmers market, small face",
+  "highlights": [
+    {
+      "title": "Trip to Lisbon 2025"
+    },
+    {
+      "title": "Food"
+    }
+  ],
+  "pinned": [],
+  "recent_posts": [
+    {
+      "format": "reel",
+      "topic": "farmers market vlog",
+      "pillar": ""
+    },
+    {
+      "format": "reel",
+      "topic": "reviving a sluggish starter",
+      "pillar": "Starter care"
+    },
+    {
+      "format": "single",
+      "topic": "sunset",
+      "pillar": ""
+    },
+    {
+      "format": "carousel",
+      "topic": "a Tuesday bake schedule",
+      "pillar": "Bake schedules"
+    },
+    {
+      "format": "reel",
+      "topic": "my tiny kitchen setup",
+      "pillar": "Kitchen life"
+    },
+    {
+      "format": "single",
+      "topic": "birthday",
+      "pillar": ""
+    }
+  ]
+}

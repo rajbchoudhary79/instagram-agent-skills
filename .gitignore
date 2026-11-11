@@ -1,0 +1,6 @@
+dist/
+__pycache__/
+*.pyc
+.DS_Store
+# a creator's own profile and workspace, if created inside the repo
+.creator-content-kit/

@@ -1,0 +1,39 @@
+{
+  "cases": [
+    {
+      "name": "ranks by multiple over own baseline, never estimates",
+      "run": [
+        "scripts/research_log.py",
+        "examples/observations.csv",
+        "--json"
+      ],
+      "expect": [
+        {
+          "path": "summary.ranked",
+          "op": "==",
+          "value": 4
+        },
+        {
+          "path": "summary.unranked",
+          "op": "==",
+          "value": 2
+        },
+        {
+          "path": "ranked.0.multiple",
+          "op": "==",
+          "value": 8.76
+        },
+        {
+          "path": "ranked.0.formula",
+          "op": "==",
+          "value": "hard_way"
+        },
+        {
+          "path": "unranked.0.multiple",
+          "op": "==",
+          "value": null
+        }
+      ]
+    }
+  ]
+}

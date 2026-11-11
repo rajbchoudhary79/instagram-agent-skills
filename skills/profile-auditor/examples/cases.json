@@ -1,0 +1,46 @@
+{
+  "cases": [
+    {
+      "name": "weak profile scores low",
+      "run": [
+        "scripts/profile_audit.py",
+        "examples/snapshot-before.json",
+        "--json"
+      ],
+      "expect": [
+        {
+          "path": "normalised",
+          "op": "<",
+          "value": 40
+        },
+        {
+          "path": "pending",
+          "op": "len",
+          "value": 2
+        }
+      ]
+    },
+    {
+      "name": "fixed profile scores high",
+      "run": [
+        "scripts/profile_audit.py",
+        "examples/snapshot-after.json",
+        "--manual",
+        "{\"photo\": 9, \"positioning\": 3}",
+        "--json"
+      ],
+      "expect": [
+        {
+          "path": "total",
+          "op": ">=",
+          "value": 90
+        },
+        {
+          "path": "pending",
+          "op": "len",
+          "value": 0
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "_about": "100-point profile rubric. 'auto' criteria are scored by profile_audit.py from the snapshot; 'manual' criteria need eyes (the agent scores them from a screenshot or description and passes them with --manual). Every criterion lists what full marks looks like, so a score can always be explained.",
+  "version": 1,
+  "criteria": [
+    {
+      "id": "photo",
+      "label": "Profile photo",
+      "points": 10,
+      "mode": "manual",
+      "full_marks": "Face (or a simple logo for a brand) that is recognisable at 110 px: tight crop, plain or contrasting background, no text.",
+      "deductions": [
+        "Busy background or full-body shot (-4)",
+        "Text in the photo (-3)",
+        "Low light or blurry (-3)"
+      ]
+    },
+    {
+      "id": "username",
+      "label": "Username",
+      "points": 8,
+      "mode": "auto",
+      "full_marks": "Short, spellable after hearing it once, no random digits, at most one separator."
+    },
+    {
+      "id": "name_field",
+      "label": "Name field",
+      "points": 10,
+      "mode": "auto",
+      "full_marks": "Contains the phrase people search for (the name field is searchable), not just a repeat of the username."
+    },
+    {
+      "id": "bio",
+      "label": "Bio clarity",
+      "points": 22,
+      "mode": "auto",
+      "full_marks": "Who it is for, what they get, one proof point, one next step, inside 150 characters. Scored with the shared bio rubric."
+    },
+    {
+      "id": "bio_cta",
+      "label": "Bio call to action",
+      "points": 8,
+      "mode": "auto",
+      "full_marks": "Ends with one action that points at the link or a DM keyword."
+    },
+    {
+      "id": "link",
+      "label": "Link",
+      "points": 8,
+      "mode": "auto",
+      "full_marks": "At least one link, and the bio says what is behind it."
+    },
+    {
+      "id": "highlights",
+      "label": "Highlights",
+      "points": 10,
+      "mode": "auto",
+      "full_marks": "3-7 highlights, short titles, including a start-here / offer / proof highlight."
+    },
+    {
+      "id": "pinned",
+      "label": "Pinned posts",
+      "points": 8,
+      "mode": "auto",
+      "full_marks": "Three pinned posts that do three jobs: who I am, best value post, proof or offer."
+    },
+    {
+      "id": "consistency",
+      "label": "Content consistency",
+      "points": 12,
+      "mode": "auto",
+      "full_marks": "80%+ of the last 9-12 posts sit inside the declared content pillars."
+    },
+    {
+      "id": "positioning",
+      "label": "Positioning",
+      "points": 4,
+      "mode": "manual",
+      "full_marks": "A first-time visitor can say in one sentence why this account and not the obvious alternative."
+    }
+  ],
+  "highlight_keywords": [
+    "start",
+    "about",
+    "free",
+    "results",
+    "reviews",
+    "work",
+    "faq",
+    "services",
+    "shop",
+    "offer",
+    "clients",
+    "proof",
+    "new here",
+    "how i",
+    "book",
+    "course",
+    "kit"
+  ]
+}

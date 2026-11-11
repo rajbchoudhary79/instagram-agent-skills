@@ -1,0 +1,42 @@
+{
+  "_about": "Instagram platform facts the tools check against. Each entry carries a confidence level. 'high' = stable and widely documented. 'medium' = documented but has changed recently or varies by account. 'verify' = widely reported, not confirmed against Instagram's own help pages when this file was written. Platforms change: if Instagram disagrees with this file, Instagram is right. Override any value in ~/.creator-content-kit/config/platform.json.",
+  "last_reviewed": "2026-11-11",
+  "caption": {
+    "max_chars": {"value": 2200, "confidence": "high"},
+    "visible_chars": {"value": 125, "confidence": "medium", "note": "Approximate. The feed cut moves with device, font size and line breaks. Treat as a margin, not a target."},
+    "max_hashtags": {"value": 5, "confidence": "verify", "note": "Widely reported as cut from 30 to 5 in Dec 2025 via the @creators account; some guides still cite 30 from the Help Center. 5 is the safe setting either way."},
+    "max_mentions": {"value": 20, "confidence": "medium"}
+  },
+  "profile": {
+    "bio_max_chars": {"value": 150, "confidence": "high"},
+    "name_max_chars": {"value": 64, "confidence": "medium"},
+    "username_max_chars": {"value": 30, "confidence": "high"},
+    "bio_links_max": {"value": 5, "confidence": "high"},
+    "highlight_title_visible_chars": {"value": 15, "confidence": "medium", "note": "Longer titles get truncated under the circle."}
+  },
+  "carousel": {
+    "max_slides": {"value": 20, "confidence": "high"},
+    "min_slides": {"value": 2, "confidence": "high"},
+    "recommended_size": {"value": "1080x1350", "confidence": "high", "note": "4:5 portrait takes the most feed space. All slides share the first slide's aspect ratio."},
+    "grid_crop": {"value": "3:4", "confidence": "medium", "note": "The profile grid shows a 3:4 crop of the cover. Keep the cover headline inside the centre."}
+  },
+  "reel": {
+    "recommended_size": {"value": "1080x1920", "confidence": "high"},
+    "max_seconds_upload": {"value": 1200, "confidence": "medium", "note": "Up to 20 minutes for some accounts; 3 minutes is the broadly available ceiling. Shorter reels are still the norm for reach."},
+    "safe_zone_note": {"value": "Keep on-screen text out of the bottom ~20% and top ~14% where UI overlays sit.", "confidence": "medium"},
+    "cover_grid_crop": {"value": "3:4", "confidence": "medium"}
+  },
+  "story": {
+    "recommended_size": {"value": "1080x1920", "confidence": "high"},
+    "video_frame_seconds": {"value": 60, "confidence": "medium", "note": "Longer videos split into 60-second frames."},
+    "visible_hours": {"value": 24, "confidence": "high"}
+  },
+  "messaging": {
+    "api_standard_window_hours": {"value": 24, "confidence": "high", "note": "Instagram Messaging API: a business can reply freely within 24 hours of the user's last message. Outside it, only specific approved message tags apply."},
+    "api_requires_user_first": {"value": true, "confidence": "high", "note": "Automated DMs through the official API and approved partners only start after the user messages, comments or replies to a story first."}
+  },
+  "automation_policy": {
+    "value": "Official Instagram Graph API / Messaging API or Meta-approved partners only. No password sharing, no browser automation, no scraping, no automated follow/like/comment.",
+    "confidence": "high"
+  }
+}

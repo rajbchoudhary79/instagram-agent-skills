@@ -1,0 +1,34 @@
+{
+  "from": "viral-researcher",
+  "to": "reel-creator",
+  "task": "Write 3 reels from the top formulas in the research log",
+  "topic": "sourdough for busy home bakers",
+  "created": "2026-11-11",
+  "payload": {
+    "formulas": [
+      "hard_way",
+      "confession"
+    ],
+    "angles": [
+      "The fridge does most of the work in a weeknight loaf",
+      "I was wrong about feeding a starter every night"
+    ]
+  },
+  "artifacts": [
+    {
+      "kind": "research",
+      "path": "research.md"
+    }
+  ],
+  "verified": [
+    "@crumbnotes reel at 8.76x its account median (user-supplied counts, viewed in app 2026-11-10)",
+    "Creator taught 220 students in online workshops in 2025 (profile verified_facts)"
+  ],
+  "assumptions": [
+    "Contrarian formulas will transfer to this audience (n=4 ranked posts, low confidence)"
+  ],
+  "open_questions": [
+    "Does the creator have a real 'I was wrong' story to tell on camera?"
+  ],
+  "approval_required": true
+}

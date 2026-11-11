@@ -1,0 +1,122 @@
+{
+  "id": "engagement",
+  "name": "Engagement potential",
+  "version": 1,
+  "applies_to": [
+    "caption",
+    "script",
+    "carousel"
+  ],
+  "measures": "Structural signals associated with saves, shares, comments and DMs: a clear ask, reusable value, a reason to send it, a question worth answering.",
+  "limitations": [
+    "This is not a reach or virality prediction. Distribution depends on the audience, timing, the video and the algorithm, none of which a text heuristic can see.",
+    "Use it to compare drafts of the same post, not to compare different posts."
+  ],
+  "bands": {
+    "strong": 80,
+    "ok": 55
+  },
+  "criteria": [
+    {
+      "id": "ask",
+      "label": "Clear ask",
+      "weight": 25,
+      "measures": "One call to action.",
+      "rules": [
+        {
+          "feature": "ask_count",
+          "type": "range",
+          "ideal": [
+            1,
+            1
+          ],
+          "zero_at": [
+            -1,
+            3
+          ],
+          "why": "One ask.",
+          "fix": "Pick the one action that serves the goal."
+        }
+      ]
+    },
+    {
+      "id": "save",
+      "label": "Save-worthy",
+      "weight": 25,
+      "measures": "Reusable value: steps, templates, lists.",
+      "rules": [
+        {
+          "feature": "value_markers",
+          "type": "min",
+          "zero_at": 0,
+          "good": 3,
+          "why": "Lists, steps, templates and 'how to' signal something worth keeping.",
+          "fix": "Give one reusable thing: a script, a checklist, a number to remember."
+        }
+      ]
+    },
+    {
+      "id": "share",
+      "label": "Share-worthy",
+      "weight": 20,
+      "measures": "A reason to send it to someone specific.",
+      "rules": [
+        {
+          "feature": "second_person_density",
+          "type": "min",
+          "zero_at": 0,
+          "good": 4,
+          "why": "Talking to 'you' per 100 words."
+        },
+        {
+          "feature": "audience_hit",
+          "type": "bool",
+          "true": 100,
+          "false": 60,
+          "why": "Names a recognisable person.",
+          "unmeasured": "no creator profile loaded"
+        }
+      ]
+    },
+    {
+      "id": "conversation",
+      "label": "Conversation",
+      "weight": 15,
+      "measures": "A question people can answer in a word.",
+      "rules": [
+        {
+          "feature": "question_count",
+          "type": "min",
+          "zero_at": -1,
+          "good": 1,
+          "why": "One genuine question invites replies."
+        }
+      ]
+    },
+    {
+      "id": "specific",
+      "label": "Specific",
+      "weight": 15,
+      "measures": "Concrete enough to act on.",
+      "rules": [
+        {
+          "feature": "specificity_density",
+          "type": "min",
+          "zero_at": 0,
+          "good": 4,
+          "why": "Concrete details per 100 words."
+        }
+      ]
+    }
+  ],
+  "dealbreakers": [
+    {
+      "id": "bait",
+      "feature": "engagement_bait",
+      "op": ">=",
+      "value": 1,
+      "cap": 50,
+      "message": "Engagement bait ('comment YES if') is low-value and widely deprioritised."
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "cases": [
+    {
+      "name": "personal collab pitch READY",
+      "run": [
+        "scripts/dm.py",
+        "lint",
+        "examples/good-collab.txt",
+        "--kind",
+        "collab",
+        "--post",
+        "examples/their-post.txt",
+        "--json"
+      ],
+      "exit": 0,
+      "expect": [
+        {
+          "path": "verdict",
+          "op": "==",
+          "value": "READY"
+        }
+      ]
+    },
+    {
+      "name": "automated cold pitch BLOCKED",
+      "run": [
+        "scripts/dm.py",
+        "lint",
+        "examples/bad-collab.txt",
+        "--kind",
+        "collab",
+        "--automated",
+        "--json"
+      ],
+      "exit": 2,
+      "expect": [
+        {
+          "path": "verdict",
+          "op": "==",
+          "value": "BLOCKED"
+        },
+        {
+          "path": "checks",
+          "op": "any_id",
+          "value": "automation"
+        }
+      ]
+    },
+    {
+      "name": "third follow-up refused",
+      "run": [
+        "scripts/dm.py",
+        "lint",
+        "examples/good-collab.txt",
+        "--kind",
+        "followup",
+        "--followup",
+        "3",
+        "--json"
+      ],
+      "exit": 2,
+      "expect": [
+        {
+          "path": "checks",
+          "op": "any_id",
+          "value": "followups"
+        }
+      ]
+    },
+    {
+      "name": "render refuses unfilled slots",
+      "run": [
+        "scripts/dm.py",
+        "render",
+        "keyword_delivery",
+        "--var",
+        "first_name=Maria"
+      ],
+      "exit": 2
+    }
+  ]
+}

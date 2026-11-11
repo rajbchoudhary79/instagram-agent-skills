@@ -1,0 +1,245 @@
+{
+  "id": "caption",
+  "name": "Caption quality",
+  "version": 1,
+  "applies_to": [
+    "reel caption",
+    "carousel caption",
+    "photo caption"
+  ],
+  "measures": "Whether the caption works in the feed: the visible window earns the tap, there is one clear ask, it carries the search phrases, hashtags are few and specific, and it reads cleanly.",
+  "limitations": [
+    "The visible window is approximated at a fixed character count; real truncation varies by device and line breaks.",
+    "Keyword coverage only counts phrases you pass with --keywords (or the profile's search terms).",
+    "Cannot judge whether the caption fits the video it sits under. Read them together."
+  ],
+  "bands": {
+    "strong": 80,
+    "ok": 55
+  },
+  "criteria": [
+    {
+      "id": "visible",
+      "label": "Visible window",
+      "weight": 25,
+      "measures": "The text before '... more' does a job on its own.",
+      "rules": [
+        {
+          "feature": "first_line_chars",
+          "type": "range",
+          "ideal": [
+            20,
+            125
+          ],
+          "zero_at": [
+            0,
+            220
+          ],
+          "why": "First line should fit the visible window with margin.",
+          "fix": "Shorten line one so it ends before the cut, on a complete thought."
+        },
+        {
+          "feature": "starts_with_hashtag",
+          "type": "bool",
+          "true": 0,
+          "false": 100,
+          "why": "A hashtag first wastes the most valuable space."
+        },
+        {
+          "feature": "starts_with_emoji",
+          "type": "bool",
+          "true": 40,
+          "false": 100,
+          "why": "An emoji as the first character pushes the words right and reads as decoration."
+        },
+        {
+          "feature": "starts_with_greeting",
+          "type": "bool",
+          "true": 0,
+          "false": 100,
+          "why": "Greetings spend the visible window."
+        }
+      ]
+    },
+    {
+      "id": "ask",
+      "label": "One ask",
+      "weight": 20,
+      "measures": "Exactly one call to action.",
+      "rules": [
+        {
+          "feature": "ask_count",
+          "type": "range",
+          "ideal": [
+            1,
+            1
+          ],
+          "zero_at": [
+            -1,
+            3
+          ],
+          "why": "One ask gets acted on; several compete and none wins.",
+          "fix": "Keep the single ask that serves the goal; delete the rest."
+        }
+      ]
+    },
+    {
+      "id": "search",
+      "label": "Searchability",
+      "weight": 20,
+      "measures": "Search phrases in natural sentences.",
+      "rules": [
+        {
+          "feature": "keyword_coverage",
+          "type": "min",
+          "zero_at": 0,
+          "good": 1,
+          "why": "Instagram search reads caption text; phrases need to be present as words.",
+          "fix": "Work each search phrase into a normal sentence.",
+          "unmeasured": "no keywords given"
+        },
+        {
+          "feature": "keyword_in_visible",
+          "type": "bool",
+          "true": 100,
+          "false": 60,
+          "why": "A phrase in the visible window helps both people and search.",
+          "unmeasured": "no keywords given"
+        },
+        {
+          "feature": "audience_hit",
+          "type": "bool",
+          "true": 100,
+          "false": 60,
+          "why": "Names the audience in their own words.",
+          "unmeasured": "no creator profile loaded"
+        }
+      ]
+    },
+    {
+      "id": "hashtags",
+      "label": "Hashtags",
+      "weight": 10,
+      "measures": "Few, specific, at the end.",
+      "rules": [
+        {
+          "feature": "hashtag_count",
+          "type": "range",
+          "ideal": [
+            0,
+            5
+          ],
+          "zero_at": [
+            -1,
+            10
+          ],
+          "why": "0-5 specific tags as topic labels.",
+          "fix": "Keep at most 5, all specific to the topic."
+        },
+        {
+          "feature": "generic_hashtag_count",
+          "type": "max",
+          "good": 0,
+          "zero_at": 2,
+          "why": "#fyp, #viral, #explore describe nothing.",
+          "fix": "Delete generic tags."
+        }
+      ]
+    },
+    {
+      "id": "readability",
+      "label": "Readability",
+      "weight": 15,
+      "measures": "Short sentences, little decoration.",
+      "rules": [
+        {
+          "feature": "mean_sentence_words",
+          "type": "range",
+          "ideal": [
+            5,
+            18
+          ],
+          "zero_at": [
+            1,
+            35
+          ],
+          "why": "Phone screens favour short sentences.",
+          "fix": "Split long sentences."
+        },
+        {
+          "feature": "emoji_per_100_chars",
+          "type": "max",
+          "good": 2,
+          "zero_at": 8,
+          "why": "Emoji as punctuation, not wallpaper.",
+          "fix": "Cut emoji to one or two that carry meaning."
+        }
+      ]
+    },
+    {
+      "id": "clean",
+      "label": "Clean",
+      "weight": 10,
+      "measures": "No slop, no dead links.",
+      "rules": [
+        {
+          "feature": "slop_count",
+          "type": "max",
+          "good": 0,
+          "zero_at": 3,
+          "why": "Slop reads as generated."
+        },
+        {
+          "feature": "link_count",
+          "type": "max",
+          "good": 0,
+          "zero_at": 1,
+          "why": "Caption links are not clickable.",
+          "fix": "Move the link to bio, a story link sticker or a DM."
+        }
+      ]
+    }
+  ],
+  "dealbreakers": [
+    {
+      "id": "over_limit",
+      "feature": "char_count",
+      "op": ">",
+      "value": 2200,
+      "cap": 10,
+      "message": "Over Instagram's 2,200 character limit. It will not post."
+    },
+    {
+      "id": "too_many_tags",
+      "feature": "hashtag_count",
+      "op": ">",
+      "value": 5,
+      "cap": 40,
+      "message": "More hashtags than the configured cap (see platform.json)."
+    },
+    {
+      "id": "greeting",
+      "feature": "starts_with_greeting",
+      "op": "==",
+      "value": true,
+      "cap": 45,
+      "message": "Opens with a greeting."
+    },
+    {
+      "id": "many_asks",
+      "feature": "ask_count",
+      "op": ">=",
+      "value": 3,
+      "cap": 55,
+      "message": "Three or more asks."
+    },
+    {
+      "id": "banned",
+      "feature": "banned_hits",
+      "op": ">=",
+      "value": 1,
+      "cap": 40,
+      "message": "Uses a word the creator never uses (profile)."
+    }
+  ]
+}

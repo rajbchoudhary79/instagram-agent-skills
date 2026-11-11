@@ -1,0 +1,45 @@
+{
+  "_about": "DM skeletons. They are starting points the agent personalises, never messages to paste unchanged. {{placeholders}} must all be filled (dm.py render refuses otherwise). 'trigger' says what must have happened before this message is appropriate.",
+  "templates": {
+    "keyword_delivery": {
+      "trigger": "They commented or DMed the keyword. They asked for this.",
+      "automatable": true,
+      "body": "Hey {{first_name}}, here's {{what_they_asked_for}}: {{link}}\n\n{{one_line_on_how_to_use_it}}\n\nWhat are you using it for?"
+    },
+    "engaged_first_message": {
+      "trigger": "They engaged first (comment, story reply, poll answer) and a personal note makes sense.",
+      "automatable": false,
+      "body": "Hey {{first_name}}, saw your {{comment_or_reply}} on {{which_post}}. {{specific_response_to_what_they_said}}\n\n{{one_easy_question}}"
+    },
+    "story_reply_response": {
+      "trigger": "They replied to a story or answered a sticker.",
+      "automatable": false,
+      "body": "{{react_to_their_answer}}. {{one_follow_up_question}}"
+    },
+    "inbound_lead_reply": {
+      "trigger": "They asked about price, availability or the offer.",
+      "automatable": false,
+      "body": "Thanks for asking, {{first_name}}. {{direct_answer_to_their_question}}\n\n{{one_qualifying_question}}"
+    },
+    "collab_pitch": {
+      "trigger": "Manual, one person at a time, after you have genuinely engaged with their content. Never bulk.",
+      "automatable": false,
+      "body": "Hi {{first_name}}, {{specific_thing_of_theirs_you_liked_and_why}}.\n\nI make {{what_you_make}} for {{your_audience}}. Idea: {{the_collab_in_one_sentence}}. {{why_it_helps_their_audience}}.\n\nWorth a look? If not, no worries."
+    },
+    "lead_followup_1": {
+      "trigger": "They engaged in a conversation, then went quiet. 2-4 days later.",
+      "automatable": false,
+      "body": "Hey {{first_name}}, {{new_useful_thing_not_a_nudge}}. {{low_pressure_question}}"
+    },
+    "lead_followup_2": {
+      "trigger": "Still quiet about a week after follow-up 1. The last message in the thread.",
+      "automatable": false,
+      "body": "Last one from me on this, {{first_name}}. {{close_the_loop_kindly}} Door's open whenever."
+    }
+  },
+  "rules": {
+    "max_followups": 2,
+    "automation": "Automated DMs only through Instagram's own tools, the official Messaging API or Meta-approved partners, and only after the person messaged, commented or replied first. Standard messaging window: 24 hours from their last message.",
+    "never": ["bulk or cold automated DMs", "buying or scraping lists", "fake urgency", "messages pretending to be personal when they are not", "asking for passwords or codes"]
+  }
+}

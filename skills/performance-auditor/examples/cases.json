@@ -1,0 +1,31 @@
+{
+  "cases": [
+    {
+      "name": "reports missing metrics and format pattern",
+      "run": [
+        "scripts/audit.py",
+        "examples/posts.csv",
+        "--rank-by",
+        "saves_per_reach",
+        "--json"
+      ],
+      "expect": [
+        {
+          "path": "missing",
+          "op": "contains",
+          "value": "avg_watch"
+        },
+        {
+          "path": "groups.format.0.format",
+          "op": "==",
+          "value": "carousel"
+        },
+        {
+          "path": "denominator",
+          "op": "==",
+          "value": "reach"
+        }
+      ]
+    }
+  ]
+}

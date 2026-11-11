@@ -1,0 +1,57 @@
+{
+  "_about": "Interactive sticker reference used by story.py and the story-strategist skill. 'job' is what the sticker is for in a sequence. Option limits reflect current app behaviour as best known; Instagram changes stickers often, so trust the app if it disagrees.",
+  "interactive": ["poll", "quiz", "question", "slider", "add_yours", "link", "countdown"],
+  "stickers": {
+    "poll": {
+      "job": "Lowest-effort vote. Warms people up and tells you what they think.",
+      "best_at": ["interact", "hook", "context"],
+      "options_min": 2, "options_max": 4,
+      "rules": ["Options short enough to read at a glance (about 20 characters).", "Ask something they have an opinion on, not something with a right answer."]
+    },
+    "quiz": {
+      "job": "Teach while testing. Wrong answers create curiosity for the next frame.",
+      "best_at": ["value", "interact"],
+      "options_min": 2, "options_max": 4, "needs_correct": true,
+      "rules": ["The next frame explains the answer.", "Make the common wrong belief one of the options."]
+    },
+    "question": {
+      "job": "Collects questions and objections: tomorrow's content and warm DM openers.",
+      "best_at": ["interact", "close"],
+      "rules": ["Prompt with a specific frame: 'What's the client line you never know how to answer?' beats 'Ask me anything'."]
+    },
+    "slider": {
+      "job": "One-tap sentiment. Good second frame when the first had a poll.",
+      "best_at": ["interact", "context"],
+      "rules": ["Pick an emoji that matches the feeling you are measuring."]
+    },
+    "add_yours": {
+      "job": "Starts a chain of other people's stories. Reach, not conversion.",
+      "best_at": ["interact", "close"],
+      "rules": ["The prompt must be easy to answer with a photo they already have."]
+    },
+    "link": {
+      "job": "Sends traffic off Instagram. Use after warming people up, never first.",
+      "best_at": ["convert"],
+      "needs_url": true,
+      "rules": ["Custom link text says what they get, not 'link'.", "One link per sequence."]
+    },
+    "countdown": {
+      "job": "Reminders for a launch, live or deadline. Followers can opt in to a notification.",
+      "best_at": ["convert", "close"],
+      "rules": ["Only for real dates. Never fake urgency."]
+    },
+    "mention": {"job": "Credit or collaboration.", "best_at": ["proof", "context"], "rules": ["Only mention people who agreed to be featured."]},
+    "location": {"job": "Local discovery.", "best_at": ["context"], "rules": []},
+    "hashtag": {"job": "Topic label; minor discovery.", "best_at": ["context"], "rules": []}
+  },
+  "purposes": {
+    "hook": "Why stay for the next tap.",
+    "context": "What is going on today.",
+    "value": "The useful bit: a tip, a before/after, a behind-the-scenes.",
+    "interact": "A sticker that gets a tap.",
+    "proof": "Something real that happened (only verified results).",
+    "convert": "The single ask: keyword DM, link, or countdown.",
+    "close": "Wrap, tease tomorrow, or ask a question."
+  },
+  "sequence": {"recommended_frames": [3, 10], "max_convert_share": 0.3, "on_screen_max_words": 20}
+}

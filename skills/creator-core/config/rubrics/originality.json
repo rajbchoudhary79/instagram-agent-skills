@@ -1,0 +1,87 @@
+{
+  "id": "originality",
+  "name": "Originality",
+  "version": 1,
+  "applies_to": [
+    "any draft"
+  ],
+  "measures": "How far a draft is from stock phrasing and from the reference posts it was inspired by.",
+  "limitations": [
+    "Only compares against reference texts you pass with --refs. It has no idea what else exists on Instagram.",
+    "Low overlap is not the same as a fresh idea. An unoriginal idea in new words still scores well.",
+    "Cliche detection is a word list."
+  ],
+  "bands": {
+    "strong": 80,
+    "ok": 55
+  },
+  "criteria": [
+    {
+      "id": "stock",
+      "label": "Stock phrasing",
+      "weight": 40,
+      "measures": "Cliches and template constructions.",
+      "rules": [
+        {
+          "feature": "slop_density",
+          "type": "max",
+          "good": 0.5,
+          "zero_at": 4,
+          "why": "Stock phrases per 100 words.",
+          "fix": "Replace stock phrases with what you actually mean."
+        },
+        {
+          "feature": "tell_count",
+          "type": "max",
+          "good": 0,
+          "zero_at": 3,
+          "why": "Template constructions ('not just X, but Y').",
+          "fix": "Say the point directly."
+        }
+      ]
+    },
+    {
+      "id": "copy_risk",
+      "label": "Distance from references",
+      "weight": 40,
+      "measures": "Word-sequence overlap with the inspiration posts.",
+      "rules": [
+        {
+          "feature": "ref_overlap",
+          "type": "max",
+          "good": 0.05,
+          "zero_at": 0.35,
+          "why": "4-word sequences shared with a reference. Above ~0.2 reads as a rewrite.",
+          "fix": "Keep the structure, replace the wording and examples with your own.",
+          "unmeasured": "no reference texts given (--refs)"
+        }
+      ]
+    },
+    {
+      "id": "specific",
+      "label": "Own specifics",
+      "weight": 20,
+      "measures": "Concrete details only this creator would have.",
+      "rules": [
+        {
+          "feature": "specificity_density",
+          "type": "min",
+          "zero_at": 0,
+          "good": 4,
+          "why": "Concrete details per 100 words.",
+          "fix": "Add a real detail from your own work."
+        }
+      ]
+    }
+  ],
+  "dealbreakers": [
+    {
+      "id": "near_copy",
+      "feature": "ref_overlap",
+      "op": ">=",
+      "value": 0.5,
+      "cap": 30,
+      "message": "Half or more of the 4-word sequences match a reference. That is a copy."
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+{"date": "2026-11-12", "frames": [
+  {"purpose": "convert", "type": "text", "on_screen": "BUY MY COURSE NOW link below", "sticker": {"type": "link"}},
+  {"purpose": "convert", "type": "text", "on_screen": "Only 3 spots left", "sticker": {"type": "poll", "options": ["yes"]}},
+  {"purpose": "interact", "type": "text", "stickers": [{"type": "poll", "options": ["a","b"]}, {"type": "quiz", "options": ["a","b"]}]}
+]}

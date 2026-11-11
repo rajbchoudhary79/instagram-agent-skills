@@ -1,0 +1,79 @@
+{
+  "username": "priyabakes",
+  "name_field": "Priya | Weeknight Sourdough",
+  "bio": "Sourdough for home bakers with a 9-to-5.\nTaught 220 students in 2025 workshops.\nGet the free starter rescue checklist ↓",
+  "links": [
+    "https://example.com/checklist"
+  ],
+  "profile_photo": "close-up face, flour-dusted counter, plain background",
+  "highlights": [
+    {
+      "title": "Start here"
+    },
+    {
+      "title": "Free checklist"
+    },
+    {
+      "title": "Student bakes"
+    },
+    {
+      "title": "Starter FAQ"
+    }
+  ],
+  "pinned": [
+    {
+      "format": "reel",
+      "topic": "who I am"
+    },
+    {
+      "format": "carousel",
+      "topic": "feed in the morning, bake after work"
+    },
+    {
+      "format": "reel",
+      "topic": "weeknight sourdough guide"
+    }
+  ],
+  "recent_posts": [
+    {
+      "format": "reel",
+      "topic": "reviving a sluggish starter",
+      "pillar": "Starter care"
+    },
+    {
+      "format": "carousel",
+      "topic": "a Tuesday bake schedule",
+      "pillar": "Bake schedules"
+    },
+    {
+      "format": "reel",
+      "topic": "my tiny kitchen setup",
+      "pillar": "Kitchen life"
+    },
+    {
+      "format": "reel",
+      "topic": "rye vs white starter",
+      "pillar": "Starter care"
+    },
+    {
+      "format": "carousel",
+      "topic": "overnight fridge proof",
+      "pillar": "Bake schedules"
+    },
+    {
+      "format": "reel",
+      "topic": "starter smells like nail polish",
+      "pillar": "Starter care"
+    },
+    {
+      "format": "single",
+      "topic": "flour shelf tour",
+      "pillar": "Kitchen life"
+    },
+    {
+      "format": "reel",
+      "topic": "farmers market vlog",
+      "pillar": ""
+    }
+  ]
+}

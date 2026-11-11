@@ -1,0 +1,192 @@
+{
+  "id": "human",
+  "name": "Human writing quality",
+  "version": 1,
+  "applies_to": [
+    "any draft"
+  ],
+  "measures": "How natural and specific the writing reads: plain vocabulary, varied rhythm, few hedges and template constructions, no invisible characters, consistent with the creator's banned-word list.",
+  "limitations": [
+    "These are local heuristics modelled on common signals of generated text. They are not an AI detector and do not call one.",
+    "A high score does not mean any detector will classify the text as human, and nothing here can guarantee that.",
+    "Human writers trip these checks too; the goal is better writing, not evasion.",
+    "Rhythm and diversity need roughly 40+ words to be meaningful."
+  ],
+  "bands": {
+    "strong": 80,
+    "ok": 55
+  },
+  "criteria": [
+    {
+      "id": "vocabulary",
+      "label": "Plain vocabulary",
+      "weight": 25,
+      "measures": "Few stock / slop terms and template constructions.",
+      "rules": [
+        {
+          "feature": "slop_density",
+          "type": "max",
+          "good": 0.3,
+          "zero_at": 3,
+          "why": "Slop terms per 100 words.",
+          "fix": "Swap each flagged term for the plain word or the concrete thing."
+        },
+        {
+          "feature": "tell_count",
+          "type": "max",
+          "good": 0,
+          "zero_at": 3,
+          "why": "Template constructions ('not just X, but Y', 'here's the thing').",
+          "fix": "State the point directly."
+        }
+      ]
+    },
+    {
+      "id": "rhythm",
+      "label": "Rhythm",
+      "weight": 20,
+      "measures": "Sentence length varies; sentences don't all start the same way.",
+      "rules": [
+        {
+          "feature": "burstiness",
+          "type": "range",
+          "ideal": [
+            0.4,
+            1.3
+          ],
+          "zero_at": [
+            0.1,
+            2.2
+          ],
+          "why": "Uniform sentence length reads machine-made.",
+          "fix": "Add one very short sentence and one longer one.",
+          "unmeasured": "fewer than 3 sentences"
+        },
+        {
+          "feature": "repeated_opener_share",
+          "type": "max",
+          "good": 0.3,
+          "zero_at": 0.7,
+          "why": "Share of sentences starting with the same word.",
+          "fix": "Vary sentence openings.",
+          "unmeasured": "fewer than 4 sentences"
+        }
+      ]
+    },
+    {
+      "id": "diversity",
+      "label": "Word variety",
+      "weight": 15,
+      "measures": "Lexical diversity and little repetition.",
+      "rules": [
+        {
+          "feature": "mattr",
+          "type": "min",
+          "zero_at": 0.45,
+          "good": 0.7,
+          "why": "Moving-average type-token ratio.",
+          "unmeasured": "under 10 words"
+        },
+        {
+          "feature": "repeated_trigram_ratio",
+          "type": "max",
+          "good": 0.04,
+          "zero_at": 0.2,
+          "why": "Repeated three-word phrases.",
+          "fix": "Cut the repeated phrase.",
+          "unmeasured": "too short"
+        }
+      ]
+    },
+    {
+      "id": "directness",
+      "label": "Directness",
+      "weight": 15,
+      "measures": "Few hedges.",
+      "rules": [
+        {
+          "feature": "hedge_density",
+          "type": "max",
+          "good": 0.5,
+          "zero_at": 4,
+          "why": "Hedges per 100 words.",
+          "fix": "Commit, or cut the claim."
+        }
+      ]
+    },
+    {
+      "id": "punctuation",
+      "label": "Punctuation habits",
+      "weight": 15,
+      "measures": "Few em dashes and stacked triads.",
+      "rules": [
+        {
+          "feature": "dash_count",
+          "type": "max",
+          "good": 0,
+          "zero_at": 4,
+          "why": "Em/en dashes between clauses are a strong generated-text habit.",
+          "fix": "Use a full stop or a comma."
+        },
+        {
+          "feature": "triad_count",
+          "type": "max",
+          "good": 1,
+          "zero_at": 4,
+          "why": "'X, Y and Z' lists over and over.",
+          "fix": "Keep the strongest item."
+        }
+      ]
+    },
+    {
+      "id": "voice",
+      "label": "Voice fit",
+      "weight": 10,
+      "measures": "Respects the creator's banned words.",
+      "rules": [
+        {
+          "feature": "banned_hits",
+          "type": "max",
+          "good": 0,
+          "zero_at": 1,
+          "why": "Words the creator listed as never-use.",
+          "fix": "Replace with the creator's own phrasing."
+        }
+      ]
+    }
+  ],
+  "dealbreakers": [
+    {
+      "id": "invisible",
+      "feature": "invisible_count",
+      "op": ">=",
+      "value": 1,
+      "cap": 60,
+      "message": "Invisible / format characters present. Run rewrite_check.py clean."
+    },
+    {
+      "id": "heavy_slop",
+      "feature": "slop_density",
+      "op": ">=",
+      "value": 5,
+      "cap": 45,
+      "message": "Five or more slop terms per 100 words. Rewrite, do not patch."
+    },
+    {
+      "id": "slop",
+      "feature": "slop_density",
+      "op": ">=",
+      "value": 2.5,
+      "cap": 65,
+      "message": "2.5+ slop terms per 100 words. Reads generated."
+    },
+    {
+      "id": "banned",
+      "feature": "banned_hits",
+      "op": ">=",
+      "value": 1,
+      "cap": 50,
+      "message": "Uses a word the creator never uses."
+    }
+  ]
+}

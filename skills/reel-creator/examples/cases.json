@@ -1,0 +1,77 @@
+{
+  "cases": [
+    {
+      "name": "good hooks score strong",
+      "run": [
+        "scripts/hook_rank.py",
+        "examples/hooks-good.txt",
+        "--json"
+      ],
+      "expect": [
+        {
+          "path": "hooks.2.score",
+          "op": ">=",
+          "value": 75
+        },
+        {
+          "path": "hooks.0.formulas",
+          "op": "nonempty"
+        }
+      ]
+    },
+    {
+      "name": "bad hooks all score weak",
+      "run": [
+        "scripts/hook_rank.py",
+        "examples/hooks-bad.txt",
+        "--json"
+      ],
+      "expect": [
+        {
+          "path": "hooks.0.score",
+          "op": "<",
+          "value": 55
+        }
+      ]
+    },
+    {
+      "name": "good script times near 30s with no warnings",
+      "run": [
+        "scripts/script_timer.py",
+        "examples/good-script.txt",
+        "--target",
+        "30",
+        "--json"
+      ],
+      "exit": 0,
+      "expect": [
+        {
+          "path": "total_seconds",
+          "op": "between",
+          "value": [
+            22,
+            34
+          ]
+        }
+      ]
+    },
+    {
+      "name": "bad script is flagged",
+      "run": [
+        "scripts/script_timer.py",
+        "examples/bad-script.txt",
+        "--target",
+        "30",
+        "--json"
+      ],
+      "exit": 1,
+      "expect": [
+        {
+          "path": "flags",
+          "op": "any_message",
+          "value": "Hook takes"
+        }
+      ]
+    }
+  ]
+}
