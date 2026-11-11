@@ -1,10 +1,10 @@
 # creator-content-kit
 
-A set of 13 agent skills plus a shared core that help one Instagram creator plan, write, check and improve their own content. It drafts reels, captions, carousels, stories, comments, replies and DMs, researches the niche, audits the profile and past posts, and keeps the content calendar.
+A set of 13 agent skills plus a shared core that help one Instagram creator plan, write, check and improve their own content. It drafts reels, captions, carousels, stories, comments, replies and DMs, researches the niche, audits the profile and past posts, and keeps the content calendar. An optional 14th skill, `content-publisher`, publishes finished posts through Meta's official API once the creator approves each one.
 
 Each skill is a folder with a `SKILL.md` an agent reads, plus small Python tools the agent runs to score, lint, time and validate drafts. Every skill reads one shared creator profile, so voice, audience, pillars and the facts the creator has verified carry across all of them.
 
-**What it never does:** log in to Instagram, ask for or store passwords, post or send anything, scrape, or automate follows, likes, comments or DMs. Every output is a copy-ready draft. The creator reviews it and posts it themselves. See [safety](skills/creator-core/references/safety.md).
+**What it never does:** ask for or store your Instagram password, scrape, post anything you have not approved, or automate follows, likes, comments or DMs. Every output is a copy-ready draft. You either post it yourself, or use `content-publisher`, which posts through the official API with your own revocable token and only after you confirm that exact post with its approval code. See [safety](skills/creator-core/references/safety.md).
 
 ---
 
@@ -42,6 +42,7 @@ Each skill is a folder with a `SKILL.md` an agent reads, plus small Python tools
 | `dm-assistant` | Keyword delivery, inbound replies, personal first messages, collab proposals, max two follow-ups; checks the messaging-window rules | `dm.py` |
 | `content-repurposer` | Finds clip-worthy moments in a YouTube/podcast/webinar transcript (SRT, VTT or plain text) and maps them to reels and carousels | `segment.py` |
 | `performance-auditor` | Post-mortem from the creator's own Insights / Meta Business Suite CSV export: rates per reach, watch ratio, outliers, patterns by format, pillar, hook and weekday | `audit.py` |
+| `content-publisher` *(optional)* | Publishes an approved image, carousel (up to 20 items), reel or story through Meta's official API: offline checks + caption gate, a preview with an approval code, publish only with that code, no duplicates, a publish log. [Setup](skills/content-publisher/references/setup.md) | `publish.py` `igapi.py` |
 
 Each `SKILL.md` has the same sections: description and activation triggers, required and optional inputs, workflow, decision rules, output format, quality checklist, error handling and examples. Longer material lives in `references/` and is only read when needed (progressive disclosure). Each skill also ships good and bad examples in `examples/`.
 
@@ -156,6 +157,19 @@ python3 skills/creator-core/scripts/gate.py draft.txt --type caption
 | `REVIEW` | 1 | Present it with every warning stated (e.g. "fill `{{amount}}`"). |
 | `BLOCKED` | 2 | Fix it first: an unverified claim, a banned word, invisible characters, over the caption limit, a hook below threshold... |
 
+### Publishing (optional)
+
+Post an approved draft straight to Instagram through Meta's official API instead of copying it into the app:
+
+```sh
+cd skills/content-publisher
+python3 scripts/publish.py check post.json                    # offline: validates media + gates the caption, prints an APPROVAL CODE
+python3 scripts/publish.py publish post.json --approve CODE   # publishes exactly that post; any edit needs a new code
+python3 scripts/publish.py log                                # what has been published
+```
+
+You need a professional (Business or Creator) account, a token from your own Meta app in `IG_ACCESS_TOKEN`, and your media at public HTTPS URLs (images must be JPEG). Step by step: [setup guide](skills/content-publisher/references/setup.md). The agent will only run `publish` after you reply with the approval code for that post; it never schedules posts or publishes the same post twice.
+
 ---
 
 ## Architecture
@@ -238,7 +252,7 @@ cd ../creator-core && python3 scripts/gate.py examples/draft-unverified.txt --ty
 
 Exit codes: `0` ok/READY, `1` REVIEW / warnings, `2` BLOCKED / bad input, `3` no creator profile found.
 
-Files the tools keep (the calendar, the research library) live in `$IG_AGENT_HOME/workspace/` (default `~/.creator-content-kit/workspace/`), or wherever you point `--file`.
+Files the tools keep (the calendar, the research library, the publish log) live in a `.creator-content-kit/` folder in the current project or a parent folder if one exists, otherwise in `$IG_AGENT_HOME` (default `~/.creator-content-kit/`). The calendar and research library also take `--file` / `--library`.
 
 ---
 
@@ -258,7 +272,7 @@ The scaffold already passes validation. Its starter tool reads the profile and u
 ## Tests
 
 ```sh
-python3 -m unittest discover -s tests          # 85 tests, ~3 s, standard library only
+python3 -m unittest discover -s tests          # 103 tests, ~4 s, standard library only
 python3 scripts/validate_skills.py             # SKILL.md contract for every skill
 python3 scripts/sync_shims.py --check          # every skill's shims match the canonical copy
 ```
@@ -275,7 +289,8 @@ The suite covers:
 | `test_tools.py` | each skill's utility: caption lint, beat timing, hook ranking, research-log baselines, triage, planner cycle, humanizer, carousel SVG, story funnel, profile audit, DM rules, transcript parsing, Insights parsing, gate |
 | `test_skills.py` | every skill meets the SKILL.md contract; the validator catches broken skills; no virality/detector promises; passwords are only mentioned to refuse them |
 | `test_examples.py` | runs every `examples/cases.json`: each tool's output on the shipped examples must match the expected values (output consistency) |
-| `test_packaging.py` | zips run without a sibling core; side-by-side install works; the scaffold validates; no network modules; standard library only |
+| `test_publisher.py` | publishing against a fake Graph API: approval codes, refusals (wrong code, blocked post, duplicate, used-up quota), call order for image / carousel / reel / story, polling and container errors, token never printed or logged |
+| `test_packaging.py` | zips run without a sibling core; side-by-side install works; the scaffold validates; only the publisher's API client can touch the network, and only Meta's API hosts; standard library only |
 
 More in [docs/testing.md](docs/testing.md).
 

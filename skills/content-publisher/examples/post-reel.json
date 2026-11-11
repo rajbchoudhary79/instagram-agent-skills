@@ -1,0 +1,6 @@
+{
+  "type": "reel",
+  "caption": "Strict feeding times are wrong for home bakers.\n\nFeed before work, mix at six, fridge overnight. Comment STARTER and I'll send you the rescue checklist.\n\n#sourdoughstarter #sourdoughschedule",
+  "media": [{"url": "https://cdn.example.com/priya/reels/feeding-times.mp4", "kind": "video"}],
+  "reel": {"share_to_feed": true, "thumb_offset": 1500}
+}

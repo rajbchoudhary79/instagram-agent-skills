@@ -1,0 +1,26 @@
+{
+  "cases": [
+    {"name": "image post is ready and gets an approval code",
+     "run": ["scripts/publish.py", "check", "examples/post-image.json", "--json"], "exit": 0,
+     "expect": [{"path": "verdict", "op": "==", "value": "READY"},
+                {"path": "approval_code", "op": "nonempty"}]},
+    {"name": "mixed carousel is ready",
+     "run": ["scripts/publish.py", "check", "examples/post-carousel.json", "--json"], "exit": 0,
+     "expect": [{"path": "verdict", "op": "==", "value": "READY"}, {"path": "media", "op": "len", "value": 4}]},
+    {"name": "reel is ready",
+     "run": ["scripts/publish.py", "check", "examples/post-reel.json", "--json"], "exit": 0,
+     "expect": [{"path": "verdict", "op": "==", "value": "READY"}]},
+    {"name": "bad post is blocked with no approval code",
+     "run": ["scripts/publish.py", "check", "examples/post-bad.json", "--json"], "exit": 2,
+     "expect": [{"path": "verdict", "op": "==", "value": "BLOCKED"},
+                {"path": "approval_code", "op": "==", "value": null},
+                {"path": "checks", "op": "any_id", "value": "format"},
+                {"path": "checks", "op": "any_id", "value": "placeholders"},
+                {"path": "checks", "op": "any_id", "value": "gate:claim"}]},
+    {"name": "wrong approval code is refused",
+     "run": ["scripts/publish.py", "publish", "examples/post-image.json", "--approve", "0000-0000-0000"], "exit": 2},
+    {"name": "log starts empty",
+     "run": ["scripts/publish.py", "log", "--json"],
+     "expect": [{"path": "published", "op": "len", "value": 0}]}
+  ]
+}

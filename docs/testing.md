@@ -28,7 +28,8 @@ Standard library `unittest`. No pytest, no dependencies. It runs in about 3 seco
 | tools (`test_tools`) | each skill's utility, function by function |
 | contract (`test_skills`) | every SKILL.md has the required sections and valid references. The validator itself catches a broken skill. Wording never promises virality or detector bypass, and passwords are only mentioned to refuse them. |
 | output consistency (`test_examples`) | each skill's shipped examples produce the documented results (scores, verdicts, exit codes) |
-| install (`test_packaging`) | zips run standalone, side-by-side installs work, the scaffold validates, no network imports, standard library only |
+| publishing (`test_publisher`) | the publish flow against a fake Graph API: approval codes, every refusal path, call order per post type, polling, token hygiene |
+| install (`test_packaging`) | zips run standalone, side-by-side installs work, the scaffold validates, network access only in the publisher's API client and only to Meta's hosts, standard library only |
 
 ## When a calibration test fails
 

@@ -46,10 +46,13 @@ If none is found it exits with code 2 and an explanation. `scripts/core.py` disp
 |---|---|
 | creator profile + companions | resolved as described in the README (`profile.py where`) |
 | config / rubric overrides | `$IG_AGENT_HOME/config/`, `$IG_AGENT_HOME/rubrics/` |
-| content calendar | `$IG_AGENT_HOME/workspace/calendar.json` (or `--file`) |
-| research library | `$IG_AGENT_HOME/workspace/research-library.json` (or `--library`) |
+| content calendar | `<data dir>/calendar.json` (or `--file`) |
+| research library | `<data dir>/research-library.json` (or `--library`) |
+| publish log | `<data dir>/publish-log.json` |
 
-`$IG_AGENT_HOME` defaults to `~/.creator-content-kit`. Nothing is sent anywhere. The test suite checks that no script imports a network module.
+`<data dir>` is a project-local `.creator-content-kit/` folder if one exists above the current folder, otherwise `$IG_AGENT_HOME`.
+
+`$IG_AGENT_HOME` defaults to `~/.creator-content-kit`. Nothing is sent anywhere except by `content-publisher/scripts/igapi.py`, which talks only to `graph.instagram.com` / `graph.facebook.com` and only when the creator runs a publish with a matching approval code. The test suite checks that no other script imports a network module.
 
 ## Verified vs assumed
 

@@ -13,7 +13,7 @@ not ask for.
    `core.py handoff validate packet.json`.
 3. A later step never upgrades an assumption to a fact.
 4. The gate runs on every final artifact, by type.
-5. The pipeline ends at **user approval**. Nothing is posted, scheduled or sent.
+5. The pipeline ends at **user approval**. Nothing is posted, scheduled or sent unless the creator then publishes the approved post with content-publisher and its approval code.
 
 ## Pipeline 1: topic to finished reel
 

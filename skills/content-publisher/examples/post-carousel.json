@@ -1,0 +1,10 @@
+{
+  "type": "carousel",
+  "caption": "Stop feeding your starter at midnight.\n\nFeed before work, mix at six, let the fridge do the slow part overnight. The full weeknight sourdough schedule is in the slides.\n\nSave this for the next time your starter stops rising.\n\n#sourdoughschedule #beginnersourdough",
+  "media": [
+    {"url": "https://cdn.example.com/priya/weeknight/slide_01.jpg", "kind": "image"},
+    {"url": "https://cdn.example.com/priya/weeknight/slide_02.jpg", "kind": "image"},
+    {"url": "https://cdn.example.com/priya/weeknight/slide_03.jpg", "kind": "image"},
+    {"url": "https://cdn.example.com/priya/weeknight/fridge.mp4", "kind": "video"}
+  ]
+}

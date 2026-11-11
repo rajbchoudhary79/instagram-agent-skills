@@ -1,7 +1,7 @@
 {
   "name": "creator-content-kit",
   "version": "1.0.0",
-  "description": "13 skills plus a shared core that help an Instagram creator plan, write, check and improve their own content: reels, captions, carousels, stories, comments, replies, DMs, niche research, profile and performance audits, and a content calendar. Drafts only; never logs in, posts or sends.",
+  "description": "13 skills plus a shared core that help an Instagram creator plan, write, check and improve their own content: reels, captions, carousels, stories, comments, replies, DMs, niche research, profile and performance audits, and a content calendar. Drafts by default; an optional publisher posts approved content through Meta's official API only with a per-post approval code. Never uses passwords.",
   "author": {"name": "Rajendra Prasad"},
   "license": "MIT",
   "keywords": ["instagram", "content", "reels", "captions", "carousel", "creator", "social-media"],

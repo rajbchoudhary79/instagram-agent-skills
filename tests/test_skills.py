@@ -12,7 +12,8 @@ sys.path.insert(0, os.path.join(helpers.ROOT, "scripts"))
 import validate_skills  # noqa: E402
 
 EXPECTED = {"creator-core", "reel-creator", "viral-researcher", "caption-writer", "carousel-creator", "story-strategist", "profile-auditor", "content-planner",
-            "content-humanizer", "comment-assistant", "reply-assistant", "dm-assistant", "content-repurposer", "performance-auditor"}
+            "content-humanizer", "comment-assistant", "reply-assistant", "dm-assistant", "content-repurposer", "performance-auditor",
+            "content-publisher"}
 
 
 class TestSkills(unittest.TestCase):

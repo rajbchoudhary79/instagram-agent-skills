@@ -7,7 +7,10 @@ explanation and the closest compliant alternative.
 
 It drafts, scores and organises. It works on text the creator gives it and
 files on the creator's machine. Every output ends as a copy-ready block the
-creator posts or sends themselves.
+creator posts or sends themselves, or publishes through content-publisher:
+Meta's official API, the creator's own revocable token, and an approval code
+the creator gives for that exact post. Comments, replies and DMs are never
+sent by the system.
 
 ## What it never does
 

@@ -1,0 +1,9 @@
+{
+  "type": "carousel",
+  "caption": "My loaves rose 40% higher after this. Comment STARTER for {{the checklist}}.",
+  "media": [
+    {"url": "/Users/me/Desktop/slide_01.svg", "kind": "image"},
+    {"url": "https://cdn.example.com/slide_02.png", "kind": "image"},
+    {"url": "http://localhost:8000/slide_03.jpg", "kind": "image"}
+  ]
+}

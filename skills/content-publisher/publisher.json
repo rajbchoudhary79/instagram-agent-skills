@@ -1,0 +1,26 @@
+{
+  "_about": "Facts and defaults for content-publisher. Each fact carries a confidence level like platform.json: high = stated plainly in Meta's docs, medium = implied or partly stated, verify = Meta's own pages disagree or it changes often. Checked against Meta's docs on 2026-11-11.",
+  "api": {
+    "host": {"value": "graph.instagram.com", "confidence": "high",
+             "note": "Instagram API with Instagram Login (Business Login for Instagram), scopes instagram_business_basic + instagram_business_content_publish. Set IG_API_HOST=graph.facebook.com for the Facebook Login path."},
+    "version": {"value": "v27.0", "confidence": "verify",
+                "note": "Version used in Meta's content-publishing examples on 2026-11-11. Override with IG_API_VERSION when Meta retires it."}
+  },
+  "limits": {
+    "carousel_max_items": {"value": 20, "confidence": "high", "note": "'up to 20 images, videos, or a combination of the two'."},
+    "carousel_min_items": {"value": 2, "confidence": "medium", "note": "Meta's docs do not state a minimum; one item is an image post, not a carousel."},
+    "posts_per_24h": {"value": 50, "confidence": "verify",
+                      "note": "Meta's guide says 100 API-published posts per 24-hour moving period; the media_publish reference says 50. The tool reads the live quota (content_publishing_limit) instead of trusting either number."},
+    "image_extensions": {"value": ["jpg", "jpeg"], "confidence": "high", "note": "'JPEG is the only image format supported. Extended JPEG formats such as MPO and JPS are not supported.'"},
+    "video_extensions": {"value": ["mp4", "mov"], "confidence": "medium", "note": "Common reel formats; exact video specs are on Meta's media reference."},
+    "container_expiry_hours": {"value": 24, "confidence": "high", "note": "Containers not published within 24 hours expire."},
+    "alt_text": {"value": "single image posts only", "confidence": "medium",
+                 "note": "alt_text was added for image posts (March 2025); reels and stories are not supported. Not sent for carousel items to avoid a failed publish."}
+  },
+  "polling": {"interval_seconds": 60, "attempts": 5, "note": "Meta recommends checking a container's status once per minute for no more than 5 minutes."},
+  "sources": [
+    "https://developers.facebook.com/documentation/instagram-platform/content-publishing",
+    "https://developers.facebook.com/documentation/instagram-platform/instagram-graph-api/reference/ig-user/media_publish",
+    "https://developers.facebook.com/documentation/instagram-platform/instagram-graph-api/reference/ig-container"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "type": "image",
+  "caption_file": "caption.txt",
+  "media": [
+    {"url": "https://cdn.example.com/priya/starter-rescue.jpg", "kind": "image",
+     "alt_text": "A jar of bubbly sourdough starter with a rubber band marking where it started"}
+  ],
+  "note": "calendar item c-0001"
+}

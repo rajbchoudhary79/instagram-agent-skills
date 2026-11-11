@@ -74,22 +74,41 @@ class TestPackaging(unittest.TestCase):
 
 
 class TestSafety(unittest.TestCase):
-    def test_no_network_code(self):
+    # The only code allowed to touch the network: the official-API client used by content-publisher.
+    NETWORK_MODULE = os.path.join(helpers.SKILLS, "content-publisher", "scripts", "igapi.py")
+
+    def test_no_network_code_outside_the_publisher_client(self):
         banned = ("import socket", "import urllib", "from urllib", "import requests", "http.client", "import ftplib",
                   "import smtplib", "webbrowser")
         for root, _, files in os.walk(helpers.ROOT):
-            if "/tests" in root or "/dist" in root:
+            if "/tests" in root or "/dist" in root or "/.git" in root:
                 continue
             for f in files:
-                if f.endswith(".py"):
-                    with open(os.path.join(root, f), encoding="utf-8") as fh:
+                path = os.path.join(root, f)
+                if f.endswith(".py") and path != self.NETWORK_MODULE:
+                    with open(path, encoding="utf-8") as fh:
                         text = fh.read()
                     for b in banned:
-                        self.assertNotIn(b, text, os.path.join(root, f))
+                        if b == "import urllib" and "import urllib.parse" in text and text.count("import urllib") == text.count("import urllib.parse"):
+                            continue  # URL parsing only, no I/O
+                        self.assertNotIn(b, text, path)
+
+    def test_network_client_is_locked_to_meta_api_hosts(self):
+        with open(self.NETWORK_MODULE, encoding="utf-8") as fh:
+            text = fh.read()
+        self.assertIn('ALLOWED_HOSTS = ("graph.instagram.com", "graph.facebook.com")', text)
+        importers = []
+        for root, _, files in os.walk(helpers.SKILLS):
+            for f in files:
+                if f.endswith(".py") and f != "igapi.py":
+                    with open(os.path.join(root, f), encoding="utf-8") as fh:
+                        if "import igapi" in fh.read():
+                            importers.append(f)
+        self.assertEqual(importers, ["publish.py"])
 
     def test_standard_library_only(self):
         import ast
-        allowed = set(sys.stdlib_module_names) | {"igkit", "_bootstrap", "helpers", "validate_skills", "new_skill", "package"}
+        allowed = set(sys.stdlib_module_names) | {"igkit", "_bootstrap", "helpers", "validate_skills", "new_skill", "package", "igapi"}
         for root, _, files in os.walk(helpers.SKILLS):
             for f in files:
                 if f.endswith(".py"):

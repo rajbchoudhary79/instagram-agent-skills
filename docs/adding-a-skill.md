@@ -30,7 +30,7 @@ Conventions used by every existing skill:
 - Workflow step 1 reads the profile (`python3 scripts/core.py profile show`). On exit 3 (no profile), ask the minimum questions and label the answers as assumptions.
 - Never invent results, numbers, clients or stories. Use `{{placeholders}}`.
 - End with the gate: `python3 scripts/core.py gate draft.txt --type <type>`.
-- The output is a copy-ready block for the creator to post or send. The skill never posts or sends anything.
+- The output is a copy-ready block for the creator to post or send. A new skill never posts or sends anything; publishing goes through content-publisher and its approval code.
 
 ## 3. Write the tool
 
